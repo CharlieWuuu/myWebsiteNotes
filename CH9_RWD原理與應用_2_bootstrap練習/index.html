@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bootstrap排版練習</title>
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<!-- CSS only -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+	<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="page_header p-5 mb-4 text-white">
+		<div class="container">
+			<h1>Hello Bootstrap!</h1>
+			<p>Bootstrap 是個廣受歡迎的前端框架，除了內建許多現成 css 資源，也有很方便排版的網格系統。</p>
+			<a class="btn btn-light" href="https://bootstrap5.hexschool.com/">
+				了解更多（中文官網）
+			</a>
+		</div>
+  </div>
+
+<div class="container">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item"  role="presentation">
+      <button class="nav-link active" id="intro-tab" data-bs-toggle="tab" data-bs-target="#intro" type="button" role="tab" aria-controls="home" aria-selected="true">設計理念</button>
+    </li>
+    <li class="nav-item"  role="presentation">
+      <button class="nav-link" id="button-tab" data-bs-toggle="tab" data-bs-target="#button" type="button" role="tab" aria-controls="profile" aria-selected="false">按鈕</button>
+    </li>
+    <li class="nav-item"  role="presentation">
+      <button class="nav-link" id="breadcrumb-tab" data-bs-toggle="tab" data-bs-target="#breadcrumb" type="button" role="tab" aria-controls="profile" aria-selected="false">麵包屑<buttona>
+    </li>
+    <li class="nav-item"  role="presentation">
+      <button class="nav-link" id="navbar-tab" data-bs-toggle="tab" data-bs-target="#navbar" type="button" role="tab" aria-controls="profile" aria-selected="false">列表群組<buttona>
+    </li>
+    <li class="nav-item"  role="presentation">
+      <button class="nav-link" id="table-tab" data-bs-toggle="tab" data-bs-target="#table" type="button" role="tab" aria-controls="profile" aria-selected="false">表格範例</button>
+    </li>
+  </ul>
+</div>
+
+<div class="tab-content" id="myTabContent">
+  <div class="container tab-pane fade show active" id="intro" role="tabpanel" aria-labelledby="home-tab">
+    <h3 class="pb-2 mt-4 mb-2 border-bottom">
+      如果可以寫完html就刻完網頁...
+    </h3>
+    <div class="container mt-4">
+      <div class="row align-items-center">
+        <div class="col">
+          <img class="icon img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1920px-Bootstrap_logo.svg.png" alt="">
+        </div>
+        <div class="col-10">
+        當時間很趕、對版面缺乏想法的時候，就會希望，如果元件都<mark>幫我刻好好的</mark> ，是不是就可以寫完html就完成網頁了？
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="alert alert-primary" role="alert">
+      <ul><b>這一頁使用了以下功能：</b>
+        <li>按鈕 Buttons（Header的連結）</li>
+        <li>導覽與頁籤 Navs and tabs（無須寫js）</li>
+        <li>欄 Columns（本文排版）</li>
+        <li>響應式圖片 img-fluid（icon圖）</li>
+        <li>警報 Alerts（即本元素）</li>
+      </ul>
+    </div>
+</div>
+
+  <div class="container tab-pane fade" id="button" role="tabpanel" aria-labelledby="profile-tab">
+    <h3 class="pb-2 mt-4 mb-2 border-bottom">按鈕的大小與調整</h3>
+    <p>
+      <div class="btn btn-outline-primary">前往報名課程</div>
+      <div class="btn btn-primary">主要的按鈕</div>
+      <div class="btn btn-danger btn-lg">警告危險</div>
+      <div class="btn btn-warning">警告!!!</div>
+      <div class="btn btn-success btn-sm">成功!</div>
+      <br>
+      <br>
+      <div class="btn-group">
+        <div class="btn btn-outline-primary">設定</div>
+        <div class="btn btn-outline-primary active">帳戶</div>
+        <div class="btn btn-outline-primary">課程</div>
+        <div class="btn btn-outline-primary">購買資訊</div>
+      </div>
+    </p>
+    <div class="alert alert-primary" role="alert">
+      <ul><b>這一頁使用了以下功能：</b>
+        <li>按鈕 Buttons</li>
+        <li>Bootstrap主題色彩</li>
+        <li>按鈕尺寸</li>
+        <li>按鈕群組 Button group</li>
+        <li>Outline 按鈕樣式</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container tab-pane fade" id="breadcrumb" role="tabpanel" aria-labelledby="profile-tab">
+    <h3 class="pb-2 mt-4 mb-2 border-bottom">麵包屑導覽列</h3>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#" onClick="return false;">動態網頁課程</a></li>
+        <li class="breadcrumb-item"><a href="#" onClick="return false;">bootstrap介紹</a></li>
+        <li class="breadcrumb-item active">第一個範例</li>
+      </ol>
+    </nav>
+    <div class="alert alert-primary" role="alert">
+      <ul><b>這一頁使用了以下功能：</b>
+        <li>麵包屑 Breadcrumb</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container tab-pane fade" id="navbar" role="tabpanel" aria-labelledby="profile-tab">
+    <h3 class="pb-2 mt-4 mb-2 border-bottom">列表群組範例</h3>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        list-group 清單
+        <span class="badge bg-primary rounded-pill">補充資料</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start active">
+        點擊的清單
+        <span class="badge bg-light rounded-pill text-dark">補充資料</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start disabled">
+        不能點的清單
+        <span class="badge bg-primary rounded-pill">補充資料</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start list-group-item-success">
+        輸入成功的清單
+        <span class="badge bg-primary rounded-pill">補充資料</span>
+      </li>
+    </ul>
+    <div class="alert alert-primary mt-4" role="alert">
+      <ul><b>這一頁使用了以下功能：</b>
+        <li>列表群組 List group</li>
+        <li>點擊 active</li>
+        <li>禁用 disabled</li>
+        <li>情境 Class</li>
+        <li>帶標籤</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container tab-pane fade" id="table" role="tabpanel" aria-labelledby="profile-tab">
+    <h3 class="pb-2 mt-4 mb-2 border-bottom">表格範例</h3>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>項目</th>
+          <th>優點</th>
+          <th>缺點</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>速度</td>
+          <td>可以快速建立網頁</td>
+          <td>樣式看起來大同小異</td>
+        </tr>
+        <tr>
+          <td>樣式</td>
+          <td>基礎的視覺不會太離譜</td>
+          <td>想要深入改的時候很需要基礎功</td>
+        </tr>
+        <tr>
+          <td>什麼時候適合用?</td>
+          <td>快速建立產品/沒時間/業主雷的時候</td>
+          <td>想做動態動去網頁/獨特的設計的時候</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-primary mt-4" role="alert">
+      <ul><b>這一頁使用了以下功能：</b>
+        <li>表格 Tables</li>
+        <li>條紋行</li>
+        <li>呈現已滑入狀態 table-hover</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-5 mt-5">
+      <p class="col-md-4 mb-0 text-light">&copy; 2022 Company, Inc</p>
+
+      <a href="#" onClick="return false;" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+        <img class="footer_icon img-fluid" src="https://cdn.icon-icons.com/icons2/3245/PNG/512/bootstrap_icon_198286.png" alt="">
+      </a>
+
+      <ul class="nav col-md-4 justify-content-end">
+        <li class="nav-item"><a href="#" onClick="return false;" class="nav-link px-2 text-light">Home</a></li>
+        <li class="nav-item"><a href="#" onClick="return false;" class="nav-link px-2 text-light">Features</a></li>
+        <li class="nav-item"><a href="#" onClick="return false;" class="nav-link px-2 text-light">Pricing</a></li>
+        <li class="nav-item"><a href="#" onClick="return false;" class="nav-link px-2 text-light">FAQs</a></li>
+        <li class="nav-item"><a href="#" onClick="return false;" class="nav-link px-2 text-light">About</a></li>
+      </ul>
+    </footer>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+@charset "UTF-8";
+* {
+  font-family: "微軟正黑體";
+}
+
+.page_header {
+  background-color: #6f42c1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+}
+
+.footer {
+  background-color: #adb5bd;
+}
+
+.footer_icon {
+  width: 40px;
+  filter: grayscale(100%);
+}/*# sourceMappingURL=style.css.map */
