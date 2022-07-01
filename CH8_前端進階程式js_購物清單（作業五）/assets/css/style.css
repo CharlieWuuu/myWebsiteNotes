@@ -1,0 +1,454 @@
+@charset "UTF-8";
+/* 將大部分標籤的預設樣式重製成以下的內容 */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* 賦予 HTML5 標籤基本的 Display:block ，用於輔助舊的瀏覽器能正常顯示 */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+/* 將 body 也就是整體的文字行高預設成 1 */
+body {
+  line-height: 1;
+}
+
+/* 取消項目列表預設的輔助符號 */
+ol,
+ul {
+  list-style: none;
+}
+
+/* 隱藏引用標籤預設的引號(部分瀏覽器有) */
+blockquote,
+q {
+  quotes: none;
+}
+
+/* 重置引用標籤的偽元素 */
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+/* 將表格初始化 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  font-family: "Alata", sans-serif;
+  font-family: "Noto Serif TC", serif;
+  font-size: 12px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: rgb(244, 231, 212);
+}
+
+#buylist {
+  position: relative;
+  display: inline-block;
+  padding: 32px 66px;
+  margin-top: 32px;
+  width: 60%;
+  max-width: 1000px;
+  min-height: 60vh;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  background-color: white;
+}
+@media screen and (max-width: 768px) {
+  #buylist {
+    padding: 0 28px;
+    width: 100%;
+    margin-top: 0px;
+    box-shadow: none;
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.title_container {
+  padding: 20px 20px 20px 0;
+}
+.title_container h1 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 32px;
+}
+@media screen and (max-width: 768px) {
+  .title_container h1 {
+    font-size: 20px;
+  }
+}
+
+.buy_item {
+  list-style: none;
+  margin-top: 10px;
+  font-weight: 500;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+}
+.buy_item .input_container_left, .buy_item .input_container_right {
+  position: relative;
+  display: flex;
+  margin: 4px 0;
+}
+.buy_item .input_container_left label, .buy_item .input_container_right label {
+  padding: 4px 0;
+}
+.buy_item .input_container_left input, .buy_item .input_container_right input {
+  width: 100px;
+  padding: 0 4px;
+  outline: none;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 0.5px solid black;
+  margin: 0 20px 0 4px;
+  background-color: rgba(0, 0, 0, 0);
+}
+.buy_item .input_container_left input::placeholder, .buy_item .input_container_right input::placeholder {
+  font-size: 12px;
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.4);
+}
+.buy_item .input_container_left .active, .buy_item .input_container_right .active {
+  border: 1px red solid;
+  border-radius: 3px;
+}
+.buy_item .addBtn {
+  cursor: pointer;
+  padding: 4px 5px;
+  height: fit-content;
+  border: 0.5px solid rgba(0, 0, 0, 0.4);
+  transition: 500ms;
+}
+.buy_item .addBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 0.5px solid rgba(0, 0, 0, 0);
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  .buy_item .addBtn:hover {
+    color: rgb(244, 231, 212);
+  }
+}
+.buy_item .alert {
+  font-size: 12px;
+  color: red;
+  margin-left: 8px;
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .buy_item .alert {
+    position: absolute;
+    top: -18px;
+    margin-left: 158px;
+    width: 60px;
+  }
+}
+
+.buylist_heading {
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 40px;
+}
+.buylist_heading .heading_name {
+  flex: 1;
+}
+.buylist_heading .heading_price {
+  width: 80px;
+  border-bottom: 1px solid black;
+}
+.buylist_heading .heading_amount {
+  width: 80px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid black;
+}
+.buylist_heading .heading_total {
+  width: 80px;
+  border-bottom: 1px solid black;
+}
+.buylist_heading .heading_del {
+  width: 50px;
+}
+@media screen and (max-width: 768px) {
+  .buylist_heading {
+    display: none;
+  }
+}
+
+.buylist_line {
+  height: 0.5px;
+  width: 100px;
+  background-color: b;
+}
+
+@media screen and (max-width: 768px) {
+  #items_list {
+    margin-top: 40px;
+  }
+}
+#items_list .buy_item_list {
+  display: flex;
+  margin: 10px 0 20px 0;
+  text-align: center;
+  height: 72px;
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    height: 80px;
+    background-color: white;
+    overflow: hidden;
+  }
+}
+#items_list .buy_item_list img {
+  height: 72px;
+  width: 72px;
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list img {
+    height: 80px;
+    width: 80px;
+  }
+}
+#items_list .buy_item_list .name_price_container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  margin-left: 16px;
+}
+#items_list .buy_item_list .name_price_container .name {
+  flex: 1;
+  min-width: 80px;
+  text-align: start;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .name_price_container .name {
+    font-size: 14px;
+  }
+}
+#items_list .buy_item_list .name_price_container .price {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#items_list .buy_item_list .name_price_container .price::after {
+  content: "元";
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .name_price_container .price {
+    width: 66px;
+  }
+}
+#items_list .buy_item_list .amount {
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#items_list .buy_item_list .amount span {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  transition: 500ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(242, 242, 242);
+}
+#items_list .buy_item_list .amount span:hover {
+  background-color: black;
+  color: white;
+}
+#items_list .buy_item_list .amount p {
+  margin: 6px 8px;
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .amount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 20px;
+    width: 10%;
+  }
+}
+#items_list .buy_item_list .total {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#items_list .buy_item_list .total::after {
+  content: "元";
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .total {
+    width: 66px;
+  }
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .total {
+    display: none;
+  }
+}
+#items_list .buy_item_list .del_btn {
+  width: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#items_list .buy_item_list .del_btn span {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: 500ms;
+  color: rgba(0, 0, 0, 0.4);
+}
+#items_list .buy_item_list .del_btn span:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+@media screen and (max-width: 768px) {
+  #items_list .buy_item_list .del_btn {
+    width: 32px;
+    align-items: flex-start;
+  }
+}
+#items_list .sum {
+  list-style: none;
+  margin: 40px 0 0 0;
+  padding: 0 36px 0 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#items_list .sum::after {
+  content: "元";
+}
+#items_list .sum .price {
+  margin: 0 10px;
+  font-size: 16px;
+}
+@media screen and (max-width: 768px) {
+  #items_list .sum {
+    margin-bottom: 20px;
+  }
+}/*# sourceMappingURL=style.css.map */

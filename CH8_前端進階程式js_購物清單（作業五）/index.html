@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBuyList 願望清單（Hahow「動畫互動網頁程式入門」作業）</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alata&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="buylist">
+      <div class="title_container">
+        <h1>MyBuyList 願望清單</h1>
+      </div>
+      <div class="buy_item">
+        <div class="input_container_left">
+          <label for="">商品</label>
+          <input id="input__name" type="text" placeholder="請輸入名稱" />
+        </div>
+        <div class="input_container_right">
+          <label for="">單價</label>
+          <input id="input__price" type="text" placeholder="請輸入數字" />
+          <span class="addBtn">新增</span>
+          <span class="alert" id="alert_data">請輸入資料</span>
+          <span class="alert" id="alert_number">請輸入數值</span>
+        </div>
+      </div>
+      <div class="buylist_heading">
+        <div class="heading_name"></div>
+        <div class="heading_price">單價</div>
+        <div class="heading_amount">數量</div>
+        <div class="heading_total">小計</div>
+        <div class="heading_del"></div>
+      </div>
+      <div id="items_list"></div>
+    </div>
+    <script src="./assets/javascript/script.js"></script>
+  </body>
+</html>
