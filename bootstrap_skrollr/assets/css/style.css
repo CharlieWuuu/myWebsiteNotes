@@ -44,7 +44,6 @@ section .section-subheading {
   width: 100%;
   transition-duration: 0.3s;
   padding: 4px 0;
-  backdrop-filter: blur(10px);
 }
 .navbar .container {
   margin: 0 auto;

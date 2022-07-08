@@ -54,3 +54,8 @@ var documentWidth = $(document).width();
 if (documentWidth <= 768 && _skrollr !== undefined) {
   _skrollr.destroy();
 }
+
+$(document).scroll(function () {
+  if ($(window).scrollTop() > 170) $('#headerTitle').fadeOut(300);
+  else $('#headerTitle').fadeIn(300);
+});
