@@ -353,7 +353,8 @@ header .icon #iconDown polygon {
 #ask .col-12 input {
   background-color: transparent;
   text-align: center;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
 }
 #ask .col-12 input::placeholder {
   color: rgba(255, 255, 255, 0.6);
