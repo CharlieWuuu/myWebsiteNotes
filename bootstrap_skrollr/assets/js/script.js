@@ -56,6 +56,6 @@ if (documentWidth <= 768 && _skrollr !== undefined) {
 }
 
 $(document).scroll(function () {
-  if ($(window).scrollTop() > 170) $('#headerTitle').fadeOut(300);
+  if ($(window).scrollTop() > 200) $('#headerTitle').fadeOut(300);
   else $('#headerTitle').fadeIn(300);
 });
