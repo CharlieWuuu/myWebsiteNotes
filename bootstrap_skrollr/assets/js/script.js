@@ -35,7 +35,6 @@ $(window).scroll(function (evt) {
 });
 
 $('#more_essay').hide();
-var s = skrollr.init();
 
 $('.more_button').click(function () {
   if ($('.more_button').hasClass('active')) {
@@ -49,9 +48,9 @@ $('.more_button').click(function () {
   }
 });
 
+var s = skrollr.init();
 var _skrollr = skrollr.get();
 var documentWidth = $(document).width();
-
 if (documentWidth <= 768 && _skrollr !== undefined) {
   _skrollr.destroy();
 }
