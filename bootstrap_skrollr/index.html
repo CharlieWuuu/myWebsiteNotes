@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>待補</title>
+
+    <!-- css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+  </head>
+  <body>
+		<!-- navbar -->
+		<nav class="navbar">
+			<div class="container">
+				<div class="navbar-header me-md-auto">
+					<a class="navbar-brand" href="#">叩傳媒 Coding Media</a>
+				</div>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a href="#intro">引言 INTRO</a></li>
+					<li class="nav-item"><a href="#reason">背景 BACKGROUND</a></li>
+					<li class="nav-item"><a href="#story">主要框架 MAIN</a></li>
+					<li class="nav-item"><a href="#future">未來 FUTURE</a></li>
+					<li class="nav-item"><a href="#more">更多 MORE</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- header -->
+		<header>
+			<div class="container">
+				<h1 data-center="transform: translateY(0px)" data-center-bottom="opacity: 1" data-top-bottom="transform: translateY(100px); opacity: 0.2">初出新手村：前端框架該選誰？</h1>
+				<hr data-center-bottom="opacity: 1" data-top="opacity: 0">
+				<p data-center-bottom="opacity: 1" data-top="opacity: 0">前端框架簡介</p>
+			</div>
+			<div class="icon">
+				<a href="#intro">
+					<svg id="iconDown" x="0px" y="0px" viewBox="0 0 512 512">
+						<g>
+							<polygon points="440.189,92.085 256.019,276.255 71.83,92.085 0,163.915 256.019,419.915 512,163.915 "></polygon>
+						</g>
+					</svg>
+				</a>
+			</div>
+		</header>
+
+		<main>
+			<!-- intro -->
+			<section id="intro">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-7" data-bottom-top="transform: translateY(-50px); opacity: 0" data-100-bottom="transform: translateY(0px); opacity: 1">
+							<!-- <h2 class="section-heading"></h2> -->
+							<h3 class="section-subheading">
+								當你掌握了HTML、CSS<br>
+								學會使用JavaScript、Jquery<br>
+								準備投入網頁開發領域大展身手時<br>
+								沒想到這樣竟然遠遠不夠......？</h3>
+						</div>
+						<div class="col-md-4" data-bottom-top="transform: translateX(400px); opacity: 0" data-100-bottom="transform: translateX(0px); opacity: 1">
+							<img src="https://i.imgflip.com/6lt32c.jpg"/>
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+				</div>
+			</section>
+
+			<!-- about -->
+			<section id="reason">
+				<div class="container">
+					<div class="row">
+						<div class="col-12" data-bottom-top="transform: translateY(-50px);opacity: 0" data-100-bottom="transform: translateY(0px);opacity: 1">
+							<img id="iconFramework" src="https://cdn-icons-png.flaticon.com/512/2519/2519334.png" alt="">
+							<h2 class="section-heading">為什麼會出現前端框架？</h2>
+							<!-- <h3 class="section-subheading">工程師為什麼要無聊變出框架？</h3> -->
+						</div>
+						<div class="col-md-6" data-bottom-top="transform: translateY(-50px);opacity: 0" data-100-bottom="transform: translateY(0px);opacity: 1">
+							<h5>網頁功能逐漸複雜</h5>
+							<p>
+								網頁最初發明時以純閱讀瀏覽為主，之後漸漸發展出處理複雜的功能，使用者可以透過網頁來寫論文、聽音樂、看電影、與人遠距離交流，做到原先在電腦內的原生軟體才能完成的事情。<br><br>
+
+								為了解決更複雜的網頁功能，開發者研發許多 JavaScript 函式庫（library）。<br><br>
+
+								以 jQuery 為例，其語法簡潔，有直覺好用的元素選取器、事件監聽註冊，
+								開發者可以依據使用者的行為，靈活操作 DOM 元素的結構及樣式。
+								讓開發者只需要專注在想實作的邏輯即可。
+								<!-- 參考資料：前端框架簡介；17. [FE] 為什麼現在的前端都在用「框架」？ -->
+							</p>
+						</div>
+						<div class="col-md-6" data-bottom-top="transform: translateY(-50px);opacity: 0" data-100-bottom="transform: translateY(0px);opacity: 1">
+							<h5>開發難以維護</h5>
+							<p>
+								然而隨著專案規模逐漸增大，程式複雜度不斷上升，直接操作 DOM 的缺點也逐漸浮現。因為需要透過 JavaScript 處理互動內容，需要將結構、樣式寫到 JavaScript 中，HTML、CSS、JavaScript 難以各司其職，造成程式碼管理困難。<br><br>
+
+								另外，當使用者操作網頁改變內容時，勢必要觸發整個畫面渲染的流程，頻繁的改動觸發重複渲染，也會影響網頁效能。<br><br>
+
+								現今的「框架」，其實就是一種提供完整解決方案的函式庫，用以提升開發效率、降低維護難度。讓網頁擴展到巨大的規模時依舊能維護，對軟體的健康和長壽至關重要。
+								<!-- 參考資料：前端框架簡介；17. [FE] 為什麼現在的前端都在用「框架」？ -->
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- main -->
+			<section id="main">
+				<div class="container">
+					<div class="row">
+						<div class="col-12" data-bottom-top="transform: translateY(-50px);opacity: 0" data-bottom="transform: translateY(0px);opacity: 1">
+							<h2 class="section-heading">前端御三家</h2>
+							<h3 class="section-subheading">現在搜尋任何前端相關職缺，幾乎都會在求職條件中提到目前的三大框架：React、Vue、Angular。他們有哪些特性？</h3>
+						</div>
+
+						<div class="col-md-4 pie_container"  data-bottom-top="transform: translateX(-400px); opacity: 0" data-100-bottom="transform: translateX(0px); opacity: 1">
+							<canvas id="pieChart" ></canvas>
+							<h6>三大前端框架的Google搜尋熱度</h6>
+							<p>（2017/07～2022/07） <a href="https://gist.github.com/tkrotoff/b1caa4c3a185629299ec234d2314e190">參考資料</a></p>
+						</div>
+
+						<div class="col-md-8">
+							<div class="row">
+								<div class="col-md-4" data-bottom-top="transform: translateY(-50px); opacity: 0" data-100-bottom="transform: translateY(0px); opacity: 1">
+									<div class="framework_head">
+										<img id="iconVue" src="./assets/images/Vue.svg" alt="">
+										<div class="framework_title">
+											<h5>Vue</h5>
+											<h6>新手容易上手</h6>
+										</div>
+									</div>
+									<p>適合做輕量級的開發、擁有最乾淨的代碼、簡單的學習曲線。
+										有些中小公司會採納Vue， 因為入門相對簡單，
+										讓流動率高的新創科技產業可以減少新人學習的時間！
+									</p>
+								</div>
+								<div class="col-md-4" data-bottom-top="transform: translateY(-50px); opacity: 0" data-100-bottom="transform: translateY(0px); opacity: 1">
+									<div class="framework_head">
+										<img id="iconVue" src="./assets/images/angular.svg" alt="">
+										<div class="framework_title">
+											<h5>Angular</h5>
+											<h6>套件豐富成熟</h6>
+										</div>
+									</div>
+									<p>三者中最成熟的框架，擁有相當豐富的套件，
+										但學習曲線相對之下非常陡峭，
+										一開始接觸網站開發的人會很辛苦，
+										而如果你是一個很會寫Typescript的人，則推薦使用Angular！
+									</p>
+								</div>
+
+								<div class="col-md-4" data-bottom-top="transform: translateY(-50px); opacity: 0" data-100-bottom="transform: translateY(0px); opacity: 1">
+									<div class="framework_head">
+										<img id="iconVue" src="./assets/images/React.svg" alt="">
+										<div class="framework_title">
+											<h5>React</h5>
+											<h6>開發社群廣大</h6>
+										</div>
+									</div>
+									<p>也是相當成熟的框架，適合拿來開發一些小型的案子。
+										因為自由度高，開發者社群非常的龐大，套件選擇豐富。
+										React也非常適合新手。以目前職場上來看，
+										React的接受度較高，前景佳。
+									</p>
+								</div>
+						</div>
+					</div>
+
+					<div class="row mt-5">
+						<div class="col-md-6" data-bottom-top="transform: translateY(-50px); opacity: 0" data-bottom="transform: translateY(0px); opacity: 1">
+							<h5>各地區的使用狀況</h5>
+							<P>根據Google搜尋熱度來看，React在世界各地的查詢比例較高，而Vue在亞洲比較流行。</P>
+						</div>
+						<div class="col-md-6">
+							<img class="img-fluid" src="./assets/images/framework_map_v2.png" alt=""  data-bottom-top="transform: translateX(400px); opacity: 0" data-100-bottom="transform: translateX(0px); opacity: 1">
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- future -->
+			<section id="future">
+				<div class="container">
+					<div class="row">
+						<div class="col-12" data-bottom-top="transform: translateY(-50px); opacity: 0" data-bottom="transform: translateY(0px); opacity: 1">
+							<h2 class="section-heading">前端框架的發展趨勢</h2>
+						</div>
+						<div class="col-md-5 future_left">
+							<img src="./assets/images/line-chart.png" alt="" data-bottom-top="transform: translateX(-400px); opacity: 0" data-bottom="transform: translateX(0px); opacity: 1">
+						</div>
+						<div class="col-md-7 future_right">
+							<div class="row row_top" data-bottom-top="transform: translateX(50px); opacity: 0" data-100-bottom="transform: translateX(0px); opacity: 1">
+								<h5>學哪個前端框架比較有發展性？</h5>
+								<p>目前職場上需要的比較多是Angular和React的人才，
+									同時React確實擁有比較完善且龐大的資料庫，
+									眾多的開發者讓它成為非常flexible的前端框架。然而如果真的將來想要成為前端工程師，
+									至少會兩樣框架是非常正常的事情QQ</p>
+							</div>
+							<div class="row row_bottom" data-bottom-top="transform: translateX(50px); opacity: 0" data-100-bottom="transform: translateX(0px); opacity: 1">
+								<div class="col-sm-10">
+									<h5>還有其他的前端框架嗎？</h5>
+
+									<p>市面上還有許多前端框架，其中2019年的框架滿意度調查中，有個名叫 Svelte 的框架橫空出世，直接一舉拿下滿意度調查的第2名。</p>
+									<img class="d-block d-sm-none mb-3" src="./assets/images/Svelte_Logo.svg" alt="Svelte Logo">
+									<p>Svelte 提供不同的方法來建構網站應用程式。
+									當應用程式運行時，React、Vue 等框架會在使用者的瀏覽器直接做他們想要做的事情，
+									而 Svelte 則是將做的這些事移到編譯階段處理，
+									因此那些做的事情只發生在你建置應用程式的時候，
+									進而產生高度優化的原生JavaScript程式碼。</p></div>
+								<div class="col-sm-2 d-none d-sm-block">
+									<img src="./assets/images/Svelte_Logo.svg" alt="Svelte Logo">
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- more -->
+			<section id="more">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 title" >
+							<h2 class="section-heading" data-bottom-top="transform: translateY(-50px); opacity: 0" data-bottom="transform: translateY(0px); opacity: 1">更多專題文章</h2>
+							<p>此為本文參考文章（點擊會另開新頁）</p>
+						</div>
+							<a class="col-md-6" id="pic1" data-bottom-top="opacity: 0" data-100-bottom="opacity: 1" target="_blank" href="https://ithelp.ithome.com.tw/articles/10224417">
+								<div class="text-panel">
+									<h2>為什麼現在的前端都在用「框架」？</h2>
+								</div>
+							</a>
+							<a class="col-md-6" id="pic2" data-bottom-top="opacity: 0" data-100-bottom="opacity: 1" target="_blank" href="https://developer.mozilla.org/zh-TW/docs/Learn/Tools_and_testing/Client-side_JavaScript_frameworks/Introduction#%E4%B8%80%E6%AE%B5%E7%B0%A1%E7%9F%AD%E7%9A%84%E6%AD%B7%E5%8F%B2">
+								<div class="text-panel">
+									<h2>前端框架簡介</h2>
+								</div>
+							</a>
+							<div class="row" id="more_essay">
+								<a class="col-md-6" id="pic3" target="_blank" href="https://ithelp.ithome.com.tw/articles/10234520">
+									<div class="text-panel">
+										<h2>三大前端時代：為何我選擇了Vue？</h2>
+									</div>
+								</a>
+								<a class="col-md-6" id="pic4" target="_blank" href="https://medium.com/@publiclou123/vue-react-angular%E6%AF%94%E8%BC%83-bceb38c1b458">
+									<div class="text-panel">
+										<h2>Vue 、 React 、Angular比較</h2>
+									</div>
+								</a>
+								<a class="col-md-6" id="pic5" target="_blank" href="https://hackmd.io/@ierosodin/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%B4%B9?type=view">
+									<div class="text-panel">
+										<h2>前端框架介紹</h2>
+									</div>
+								</a>
+								<a class="col-md-6" id="pic6" target="_blank" href="https://www.gss.com.tw/blog/svelte">
+									<div class="text-panel">
+										<h2>前端框架的新選擇-Svelte</h2>
+									</div>
+								</a>
+							</div>
+							<div class="col-12">
+								<button class="more_button">其他</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ask -->
+			<section id="ask">
+				<div class="container">
+					<div class="row">
+						<div class="col-12">
+							<h2 class="section-heading">關於框架，還想知道什麼？</h2>
+							<input class="form-control" placeholder="告訴我們你想聽的主題">
+							<hr>
+							<button>送出留言</button>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- js -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/skrollr/0.6.30/skrollr.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+		<script src="./assets/js/script.js"></script>
+
+	</body>
+</html>
