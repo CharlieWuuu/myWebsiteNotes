@@ -334,6 +334,7 @@ header .icon #iconDown polygon {
   border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3px;
   transition-duration: 0.3s;
+  background-color: white;
   cursor: pointer;
 }
 #more .more_button:hover {
@@ -363,6 +364,7 @@ header .icon #iconDown polygon {
   border: 1px solid rgba(0, 0, 0, 0.7);
   border-radius: 3px;
   transition-duration: 0.3s;
+  background-color: white;
   cursor: pointer;
 }
 #ask .col-12 button:hover {
