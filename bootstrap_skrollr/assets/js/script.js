@@ -35,8 +35,7 @@ $(window).scroll(function (evt) {
 });
 
 $('#more_essay').hide();
-skrollr.init();
-document.body.id = 'skrollr-body';
+var s = skrollr.init();
 
 $('.more_button').click(function () {
   if ($('.more_button').hasClass('active')) {
@@ -49,3 +48,10 @@ $('.more_button').click(function () {
     $('#more_essay').slideDown();
   }
 });
+
+var _skrollr = skrollr.get();
+var documentWidth = $(document).width();
+
+if (documentWidth <= 768 && _skrollr !== undefined) {
+  _skrollr.destroy();
+}
