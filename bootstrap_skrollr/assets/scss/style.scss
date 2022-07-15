@@ -139,7 +139,7 @@ header{
       font-size: 64px;
       font-family: 'Noto Serif TC';
       font-weight: 500;
-      @media screen and (max-width: 768px) {
+      @media screen and (max-width: 992px) {
         font-size: 32px;
       }
     }
@@ -212,8 +212,18 @@ header{
   }
   .pie_container{
     padding: 0 40px;
+    @media screen and (max-width: 992px) {
+      padding: 0;
+    }
+    @media screen and (max-width: 768px) {
+      padding: 0 40px;
+    }
     #pieChart{
       padding: 20px;
+    }
+    h6,p{
+      width: 80%;
+      margin: auto;
     }
   }
   .col-md-8{
@@ -226,12 +236,16 @@ header{
           @extend %flex-center;
           flex-wrap: wrap;
           justify-content: space-around;
+          @media screen and (max-width: 768px) {
+            justify-content: center;
+          }
           img{
             width: 100%;
             padding: 20px;
             height: 120px;
             @media screen and (max-width: 768px) {
               width: auto;
+              margin: 0 5%;
             }
           }
           .framework_title{
@@ -242,11 +256,21 @@ header{
         }
       }
       p{
+        text-align: start;
         margin: 0 8px;
         @media screen and (max-width: 768px) {
           width: 90%;
           margin: auto;
         }
+      }
+    }
+  }
+  .col-md-6{
+    p{
+      width: 80%;
+      margin: auto;
+      @media screen and (max-width: 768px) {
+        width: 100%;
       }
     }
   }
