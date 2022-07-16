@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap");
 html,
 body,
 div,
@@ -143,7 +144,7 @@ a {
   text-decoration: none;
 }
 
-.week_container .temperature_container .temperature .temperatureH, .week_container .temperature_container .temperature .temperatureL, .week_container .temperature_container .temperature, .week_container .temperature_container, .week_container .daily_container .future_container, .week_container .daily_container, .week_container, .none, .picture_container, .main_container .weather_container, .main_container .name_container .date_container, .main_container .name_container, .main_container .logo_container, .main_container, .down_container, .up_container, .card, body {
+.week_container .temperature_container .temperature .temperatureH, .week_container .temperature_container .temperature .temperatureL, .week_container .temperature_container .temperature, .week_container .temperature_container, .week_container .daily_container .future_container, .week_container .daily_container, .week_container, .none, .picture_container, .main_container .weather_container, .main_container .name_container .date_container, .main_container .name_container, .main_container #logo_web, .main_container, .down_container, .up_container, #logo_pad, .card, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,6 +154,11 @@ body {
   background-image: url("../images/bg.png");
   height: 100vh;
   padding: 20px;
+}
+@media screen and (max-width: 576px) {
+  body {
+    padding: 0px;
+  }
 }
 
 .card {
@@ -166,11 +172,38 @@ body {
   background-color: white;
   box-shadow: 0 8px 20px 0 rgba(106, 106, 106, 0.8);
 }
+@media screen and (max-width: 576px) {
+  .card {
+    width: 100%;
+  }
+}
+
+#logo_pad {
+  display: none;
+  flex-direction: column;
+  width: 100%;
+}
+#logo_pad p {
+  font-size: 18px;
+  color: #616161;
+  font-family: "Shippori Mincho", serif;
+}
+#logo_pad hr {
+  width: 100%;
+  margin: 4px 0 0 0;
+  border-top: 0.5px solid #616161;
+}
+@media screen and (max-width: 992px) {
+  #logo_pad {
+    display: flex;
+  }
+}
 
 .up_container {
   width: 100%;
   height: 100%;
   gap: 20px;
+  position: relative;
 }
 
 .down_container {
@@ -185,23 +218,70 @@ body {
   width: 320px;
   height: 100%;
 }
-.main_container .logo_container {
+@media screen and (max-width: 992px) {
+  .main_container {
+    position: absolute;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main_container {
+    padding: 12px;
+  }
+}
+.main_container #logo_web {
   flex-direction: column;
   width: 100%;
 }
-.main_container .logo_container hr {
+.main_container #logo_web p {
+  font-size: 18px;
+  color: #616161;
+  font-family: "Shippori Mincho", serif;
+}
+.main_container #logo_web hr {
   width: 100%;
   margin: 4px 0 0 0;
+  border-top: 0.5px solid #616161;
+}
+@media screen and (max-width: 992px) {
+  .main_container #logo_web {
+    display: none;
+  }
 }
 .main_container .name_container {
   flex-direction: column;
   gap: 12px;
   flex: 0.7;
   font-size: 48px;
+  color: black;
+  font-family: "Shippori Mincho", serif;
+  font-weight: 500;
 }
 .main_container .name_container .date_container {
   font-size: 24px;
   gap: 16px;
+}
+@media screen and (max-width: 992px) {
+  .main_container .name_container {
+    flex: none;
+    font-size: 40px;
+  }
+  .main_container .name_container .date_container {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main_container .name_container {
+    font-size: 28px;
+  }
+  .main_container .name_container .date_container {
+    font-size: 16px;
+    gap: 12px;
+  }
 }
 .main_container .weather_container {
   flex: 0.3;
@@ -209,16 +289,36 @@ body {
 }
 .main_container .weather_container h2 {
   font-size: 48px;
+  color: black;
+  font-family: "Shippori Mincho", serif;
+  margin-bottom: 4px;
 }
 .main_container .weather_container img {
   width: 48px;
+}
+@media screen and (max-width: 992px) {
+  .main_container .weather_container {
+    flex: none;
+    gap: 8px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .main_container .weather_container {
+    gap: 4px;
+  }
+  .main_container .weather_container h2 {
+    font-size: 28px;
+  }
+  .main_container .weather_container img {
+    width: 32px;
+  }
 }
 
 .picture_container {
   width: 100%;
   height: 100%;
   background-image: url("../images/scene.png");
-  background-size: auto 100%;
+  background-size: cover;
   background-position: center;
   box-shadow: inset 0 0 4px #000000;
   border-radius: 8px;
@@ -227,6 +327,11 @@ body {
 .none {
   min-width: 100px;
   width: 320px;
+}
+@media screen and (max-width: 992px) {
+  .none {
+    display: none;
+  }
 }
 
 .week_container {
@@ -241,6 +346,12 @@ body {
   justify-content: space-between;
   padding: 0 20px;
 }
+@media screen and (max-width: 1200px) {
+  .week_container .daily_container {
+    width: 100%;
+    padding: 0;
+  }
+}
 .week_container .daily_container .future_container {
   flex-direction: column;
   gap: 4px;
@@ -248,11 +359,14 @@ body {
   height: 100%;
 }
 .week_container .daily_container .future_container p {
-  font-size: 18px;
+  font-size: 16px;
+  color: #616161;
+  font-family: "Shippori Mincho", serif;
 }
 .week_container .daily_container .future_container img {
-  width: 28px;
-  height: 28px;
+  width: 20px;
+  height: 20px;
+  opacity: 80%;
 }
 .week_container .temperature_container {
   position: relative;
@@ -260,6 +374,12 @@ body {
   max-width: 720px;
   justify-content: space-between;
   padding: 0 20px;
+}
+@media screen and (max-width: 1200px) {
+  .week_container .temperature_container {
+    width: 100%;
+    padding: 0;
+  }
 }
 .week_container .temperature_container .temperature {
   position: relative;
@@ -273,14 +393,19 @@ body {
   flex-direction: column;
 }
 .week_container .temperature_container .temperature .temperatureH p, .week_container .temperature_container .temperature .temperatureL p {
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 6px;
+  color: #616161;
+  font-family: "Shippori Mincho", serif;
+}
+.week_container .temperature_container .temperature .temperatureH #futureTempHText, .week_container .temperature_container .temperature .temperatureL #futureTempHText {
+  margin-bottom: 2px;
 }
 .week_container .temperature_container .temperature .temperatureH .dot, .week_container .temperature_container .temperature .temperatureL .dot {
   width: 4px;
   height: 4px;
   border-radius: 8px;
-  background-color: black;
+  background-color: #616161;
 }
 .week_container .temperature_container .temperature_line {
   position: absolute;
@@ -294,11 +419,15 @@ body {
   top: 0;
   left: 0;
   padding: 0 50px;
-  stroke: black;
-  stroke-width: 0.5px;
+  stroke-width: 1px;
   overflow: visible;
 }
+@media screen and (max-width: 1200px) {
+  .week_container .temperature_container .temperature_line svg {
+    padding: 0 28px;
+  }
+}
 .week_container .temperature_container .temperature_line svg path {
-  stroke: gray;
+  stroke: rgba(0, 0, 0, 0.3);
   fill: none;
 }/*# sourceMappingURL=style.css.map */

@@ -1,8 +1,17 @@
+// 992 576
+
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+$black: #616161;
+$font: 'Shippori Mincho', serif;
+
 body{
 	@extend %flex-center;
 	background-image: url("../images/bg.png");
 	height: 100vh;
 	padding: 20px;
+	@media screen and (max-width: 576px){
+		padding: 0px;
+	}
 }
 
 .card{
@@ -16,8 +25,30 @@ body{
 	padding: 20px;
 	gap: 20px;
 	background-color: white;
-
 	box-shadow: 0 8px 20px 0 #6A6A6ACC;
+	@media screen and (max-width: 576px){
+		width: 100%;
+	}
+}
+
+#logo_pad{
+	display: none;
+	@extend %flex-center;
+	flex-direction: column;
+	width: 100%;
+	p{
+		font-size: 18px;
+		color: $black;
+		font-family: $font;
+	}
+	hr{
+		width: 100%;
+		margin: 4px 0 0 0;
+		border-top: 0.5px solid $black;
+	}
+	@media screen and (max-width: 992px){
+		display: flex;
+	}
 }
 
 .up_container{
@@ -25,6 +56,7 @@ body{
 	width: 100%;
 	height: 100%;
 	gap: 20px;
+	position: relative;
 }
 
 .down_container{
@@ -40,13 +72,33 @@ body{
 	min-width: 200px;
 	width: 320px;
 	height: 100%;
-	.logo_container{
+	@media screen and (max-width: 992px){
+		position: absolute;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+		padding: 20px;
+	}
+	@media screen and (max-width: 576px){
+		padding: 12px;
+	}
+	#logo_web{
 		@extend %flex-center;
 		flex-direction: column;
 		width: 100%;
+		p{
+			font-size: 18px;
+			color: $black;
+			font-family: $font;
+		}
 		hr{
 			width: 100%;
 			margin: 4px 0 0 0;
+			border-top: 0.5px solid $black;
+		}
+		@media screen and (max-width: 992px){
+			display: none;
 		}
 	}
 	.name_container{
@@ -55,10 +107,27 @@ body{
 		gap: 12px;
 		flex: 0.7;
 		font-size: 48px;
+		color: black;
+		font-family: $font;
+		font-weight: 500;
 		.date_container{
 			@extend %flex-center;
 			font-size: 24px;
 			gap: 16px;
+		}
+		@media screen and (max-width: 992px){
+			flex: none;
+			font-size: 40px;
+			.date_container{
+				font-size: 20px;
+			}
+		}
+		@media screen and (max-width: 576px){
+			font-size: 28px;
+			.date_container{
+				font-size: 16px;
+				gap: 12px;
+			}
 		}
 	}
 	.weather_container{
@@ -67,9 +136,25 @@ body{
 		gap: 16px;
 		h2{
 			font-size: 48px;
+			color: black;
+			font-family: $font;
+			margin-bottom: 4px;
 		}
 		img{
 			width: 48px;
+		}
+		@media screen and (max-width: 992px){
+			flex: none;
+			gap: 8px;
+		}
+		@media screen and (max-width: 576px){
+			gap: 4px;
+			h2{
+				font-size: 28px
+			}
+			img{
+				width: 32px;
+			}
 		}
 	}
 }
@@ -79,7 +164,7 @@ body{
 	width: 100%;
 	height: 100%;
 	background-image: url("../images/scene.png");
-	background-size: auto 100%;
+	background-size: cover;
 	background-position: center;
 	box-shadow: inset 0 0 4px #000000;
 	border-radius: 8px;
@@ -89,6 +174,9 @@ body{
 	@extend %flex-center;
 	min-width: 100px;
 	width: 320px;
+	@media screen and (max-width: 992px){
+		display: none;
+	}
 }
 
 .week_container{
@@ -103,6 +191,10 @@ body{
 		height: 100%;
 		justify-content: space-between;
 		padding: 0 20px;
+		@media screen and (max-width: 1200px){
+			width: 100%;
+			padding: 0;
+		}
 		.future_container{
 			@extend %flex-center;
 			flex-direction: column;
@@ -110,11 +202,14 @@ body{
 			width: 60px;
 			height: 100%;
 			p{
-				font-size: 18px;
+				font-size: 16px;
+				color: $black;
+				font-family: $font;
 			}
 			img{
-				width: 28px;
-				height: 28px;
+				width: 20px;
+				height: 20px;
+				opacity: 80%;
 			}
 		}
 	}
@@ -125,6 +220,10 @@ body{
 		max-width: 720px;
 		justify-content: space-between;
 		padding: 0 20px;
+		@media screen and (max-width: 1200px){
+			width: 100%;
+			padding: 0;
+		}
 
 		.temperature{
 			position: relative;
@@ -138,14 +237,19 @@ body{
 				@extend %flex-center;
 				flex-direction: column;
 				p{
-					font-size: 16px;
+					font-size: 14px;
 					padding-left: 6px;
+					color: $black;
+					font-family: $font;
+				}
+				#futureTempHText{
+					margin-bottom: 2px;
 				}
 				.dot{
 					width: 4px;
 					height: 4px;
 					border-radius: 8px;
-					background-color: black;
+					background-color: $black;
 				}
 			}
 		}
@@ -161,11 +265,13 @@ body{
 				top: 0;
 				left: 0;
 				padding: 0 50px;
-				stroke: black;
-				stroke-width: 0.5px;
+				stroke-width: 1px;
 				overflow: visible;
+				@media screen and (max-width: 1200px){
+					padding: 0 28px;
+				}
 				path{
-					stroke: gray;
+					stroke: rgba(0, 0, 0, 0.3);
 					fill: none;
 				}
 			}

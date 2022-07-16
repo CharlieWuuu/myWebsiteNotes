@@ -69,7 +69,7 @@ $.getJSON(
     print = `
     <div class="temperature">
       <div class="temperatureH" style="top: ${HighPosition}px">
-        <p>${futureTempH}°</p>
+        <p id="futureTempHText">${futureTempH}°</p>
         <div class="dot"></div>
       </div>
       <div class="temperatureL" style="top: ${LowPosition}px">
@@ -145,21 +145,21 @@ function SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance) {
   print = `
   <svg id="SVGlineH" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
   <path
-  d="M0 ${HighP1} C15 ${HighP1},
-  35 ${HighP2} ,50 ${HighP2} C65 ${HighP2},
-  85 ${HighP3} ,100 ${HighP3} C115 ${HighP3},
-  135 ${HighP4} ,150 ${HighP4} C165 ${HighP4},
-  185 ${HighP5} ,200,${HighP5}"
+  d="M0 ${HighP1} C25 ${HighP1},
+  25 ${HighP2} ,50 ${HighP2} C75 ${HighP2},
+  75 ${HighP3} ,100 ${HighP3} C125 ${HighP3},
+  125 ${HighP4} ,150 ${HighP4} C175 ${HighP4},
+  175 ${HighP5} ,200,${HighP5}"
   ></path>
 </svg>
 
   <svg id="SVGlineL" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
     <path
-    d="M0 ${LowP1} C15 ${LowP1},
-    35 ${LowP2} ,50 ${LowP2} C65 ${LowP2},
-    85 ${LowP3} ,100 ${LowP3} C115 ${LowP3},
-    135 ${LowP4} ,150 ${LowP4} C165 ${LowP4},
-    185 ${LowP5} ,200,${LowP5}"
+    d="M0 ${LowP1} C25 ${LowP1},
+    25 ${LowP2} ,50 ${LowP2} C75 ${LowP2},
+    75 ${LowP3} ,100 ${LowP3} C125 ${LowP3},
+    125 ${LowP4} ,150 ${LowP4} C175 ${LowP4},
+    175 ${LowP5} ,200,${LowP5}"
     ></path>
   </svg>`;
   $('.temperature_line').append(print);
