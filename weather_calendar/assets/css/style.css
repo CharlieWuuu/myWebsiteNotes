@@ -150,7 +150,7 @@ a {
 }
 
 body {
-  background-image: url("../../../assets/images/bg.png");
+  background-image: url("../images/bg.png");
   height: 100vh;
   padding: 20px;
 }
@@ -217,7 +217,7 @@ body {
 .picture_container {
   width: 100%;
   height: 100%;
-  background-image: url("../../../assets/images/scene.png");
+  background-image: url("../images/scene.png");
   background-size: auto 100%;
   background-position: center;
   box-shadow: inset 0 0 4px #000000;
