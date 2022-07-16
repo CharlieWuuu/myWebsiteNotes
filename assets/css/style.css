@@ -1,197 +1,131 @@
 @charset "UTF-8";
-/* 將大部分標籤的預設樣式重製成以下的內容 */
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+* {
+  vertical-align: middle;
+  font-family: 微軟正黑體;
+}
+
+html, body {
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+  background-color: #E9EBEE;
 }
 
-/* 賦予 HTML5 標籤基本的 Display:block ，用於輔助舊的瀏覽器能正常顯示 */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
-/* 將 body 也就是整體的文字行高預設成 1 */
-body {
-  line-height: 1;
+.topbar {
+  height: 50px;
+  background-color: #3B5998;
+}
+.topbar img {
+  height: 30px;
+  margin: 10px;
+}
+.topbar input {
+  height: 30px;
+  margin: 10px 10px 10px 0;
+  width: 500px;
+  border-radius: 5px;
+  padding-left: 10px;
+  border: none;
 }
 
-/* 取消項目列表預設的輔助符號 */
-ol,
-ul {
-  list-style: none;
+.cover {
+  height: 330px;
+  background-image: url("https://images.pexels.com/photos/5465831/pexels-photo-5465831.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-/* 隱藏引用標籤預設的引號(部分瀏覽器有) */
-blockquote,
-q {
-  quotes: none;
-}
-
-/* 重置引用標籤的偽元素 */
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-
-/* 將表格初始化 */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-* {
-  font-family: "Alata", sans-serif;
-  font-family: "Noto Serif TC", serif;
-  font-size: 12px;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: rgb(244, 231, 212);
-}
-
-#buylist {
+.midbar {
+  height: 50px;
   position: relative;
-  display: inline-block;
-  padding: 32px 66px;
-  margin-top: 32px;
-  width: 60%;
-  max-width: 1000px;
-  min-height: 60vh;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  background-color: white;
+  background-color: #fff;
 }
-@media screen and (max-width: 768px) {
-  #buylist {
-    padding: 0 28px;
-    width: 100%;
-    margin-top: 0px;
-    box-shadow: none;
-    background-color: rgba(0, 0, 0, 0);
-  }
+.midbar .personimg {
+  width: 150px;
+  height: 150px;
+  background-image: url("https://www.royacdn.com/unsafe/Site-627f01a8-8ad2-463b-856c-22d1c012ae3e/shutterstock_662451877.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: 4px solid white;
+  position: absolute;
+  top: -130px;
+  left: 20px;
 }
-
-.title_container {
-  padding: 20px 20px 20px 0;
+.midbar .personimg .names {
+  position: absolute;
+  color: white;
+  right: -175px;
+  top: 50%;
+  transform: translateY(-50%);
 }
-.title_container h1 {
+.midbar .personimg .names h2, .midbar .personimg .names h5 {
   margin: 0;
-  font-weight: 400;
+}
+.midbar .personimg .names h2 {
   font-size: 32px;
 }
-@media screen and (max-width: 768px) {
-  .title_container h1 {
-    font-size: 20px;
-  }
+.midbar .personimg .names h5 {
+  font-size: 16px;
 }
 
-.buy_item {
-  list-style: none;
-  margin-top: 10px;
-  font-weight: 500;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.bottombar {
+  width: 35%;
+  min-width: 300px;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 14px;
+  line-height: 25px;
+  background-color: #fff;
+}
+.bottombar i {
+  width: 20px;
+}
+
+@media screen and (max-width: 800px) {
+  .topbar {
+    height: 60px;
+  }
+  .topbar .icon {
+    height: 40px;
+  }
+  .topbar input {
+    height: 30px;
+    width: calc(100% - 40px - 60px);
+    background-color: #2d4373;
+  }
+  .topbar input::placeholder {
+    color: white;
+    opacity: 0.5;
+  }
+  .midbar {
+    height: 120px;
+  }
+  .midbar .personimg {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .midbar .personimg .names {
+    right: initial;
+    left: 50%;
+    top: 110%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    color: #555;
+  }
+  .bottombar {
+    margin-top: 0;
+    width: calc(100% - 40px);
+  }
+  .bottombar p {
+    border-top: 1px solid #555;
+    padding: 10px 20px 0 20px;
+    font-size: 14px;
+  }
+}/*# sourceMappingURL=style.css.map */align-items: center;
   font-size: 14px;
 }
 .buy_item .input_container_left, .buy_item .input_container_right {
