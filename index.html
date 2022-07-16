@@ -10,11 +10,12 @@
         margin: 0;
         padding: 0;
         font-family: '微軟正黑體';
+        /* border: 1px black solid; */
       }
 
       header {
         width: 100%;
-        padding: 64px 60px 32px 60px;
+        padding: 64px 0 32px 0;
         background: #ff6e7f; /* fallback for old browsers */
         background: -webkit-linear-gradient(
           to right,
@@ -26,6 +27,12 @@
           #ff6e7f,
           #bfe9ff
         ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+
+      .title_container {
+        width: 80%;
+        max-width: 1280px;
+        margin: auto;
       }
 
       h1 {
@@ -54,7 +61,7 @@
       td {
         border-bottom: 1px solid black;
         padding: 12px;
-        font-size: 20px;
+        font-size: 16px;
       }
 
       thead > tr > td {
@@ -63,7 +70,7 @@
       }
 
       .td2 {
-        width: 70%;
+        width: 60%;
       }
 
       a {
@@ -73,8 +80,10 @@
   </head>
   <body>
     <header>
-      <h1>作業 | 筆記</h1>
-      <h2>動畫互動網頁程式入門 (HTML/CSS/JS)</h2>
+      <div class="title_container">
+        <h1>作業 | 筆記</h1>
+        <h2>動畫互動網頁程式入門 (HTML/CSS/JS)</h2>
+      </div>
     </header>
     <main>
       <table>
