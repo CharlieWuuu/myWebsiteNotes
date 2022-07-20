@@ -162,6 +162,8 @@ body {
 @media screen and (max-width: 576px) {
   body {
     padding: 0px;
+    height: 90vh;
+    background-image: none;
   }
 }
 
@@ -180,6 +182,11 @@ body {
   .card {
     width: 100%;
     flex-direction: column;
+  }
+}
+@media screen and (max-width: 576px) {
+  .card {
+    box-shadow: none;
   }
 }
 
