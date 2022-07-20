@@ -1,8 +1,12 @@
 // 992 576
 
-@import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
 $black: #616161;
-$font: 'Shippori Mincho', serif;
+$font: 'Noto Serif TC', serif;
+
+*{
+	cursor:default;
+}
 
 body{
 	@extend %flex-center;
@@ -15,8 +19,8 @@ body{
 }
 
 .card{
+	position: relative;
 	@extend %flex-center;
-	flex-direction: column;
 	margin: auto;
 	max-width: 1280px;
 	width: 80%;
@@ -26,10 +30,47 @@ body{
 	gap: 20px;
 	background-color: white;
 	box-shadow: 0 8px 20px 0 #6A6A6ACC;
-	@media screen and (max-width: 576px){
+	@media screen and (max-width: 992px){
 		width: 100%;
+		flex-direction: column;
 	}
 }
+
+.main_container{
+	@extend %flex-center;
+	width: 100%;
+	height: 100%;
+	flex: 1;
+	gap: 20px;
+
+	@extend %flex-center;
+	flex-direction: column;
+	min-width: 200px;
+	width: 320px;
+	height: 100%;
+	@media screen and (max-width: 992px){
+		position: absolute;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-start;
+		width: 100%;
+		padding: 66px 28px 0 28px;
+		height: fit-content;
+		top: 0;
+	}
+}
+
+.detail_container{
+	@extend %flex-center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	gap: 0px;
+	opacity: 1;
+	overflow: hidden;
+	transition: gap 1s;
+}
+
 
 #logo_pad{
 	display: none;
@@ -51,110 +92,124 @@ body{
 	}
 }
 
-.up_container{
-	@extend %flex-center;
-	width: 100%;
-	height: 100%;
-	gap: 20px;
-	position: relative;
-}
-
-.down_container{
-	@extend %flex-center;
-	width: 100%;
-	height: fit-content;
-	gap: 20px;
-}
-
-.main_container{
+#logo_web{
 	@extend %flex-center;
 	flex-direction: column;
-	min-width: 200px;
-	width: 320px;
-	height: 100%;
-	@media screen and (max-width: 992px){
-		position: absolute;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: flex-start;
-		width: 100%;
-		padding: 20px;
-	}
-	@media screen and (max-width: 576px){
-		padding: 12px;
-	}
-	#logo_web{
-		@extend %flex-center;
-		flex-direction: column;
-		width: 100%;
-		p{
-			font-size: 18px;
-			color: $black;
-			font-family: $font;
-		}
-		hr{
-			width: 100%;
-			margin: 4px 0 0 0;
-			border-top: 0.5px solid $black;
-		}
-		@media screen and (max-width: 992px){
-			display: none;
-		}
-	}
-	.name_container{
-		@extend %flex-center;
-		flex-direction: column;
-		gap: 12px;
-		flex: 0.7;
-		font-size: 48px;
-		color: black;
+	width: 100%;
+	p{
+		font-size: 18px;
+		color: $black;
 		font-family: $font;
-		font-weight: 500;
-		.date_container{
-			@extend %flex-center;
-			font-size: 24px;
-			gap: 16px;
-		}
-		@media screen and (max-width: 992px){
-			flex: none;
-			font-size: 40px;
-			.date_container{
-				font-size: 20px;
-			}
-		}
-		@media screen and (max-width: 576px){
-			font-size: 28px;
-			.date_container{
-				font-size: 16px;
-				gap: 12px;
-			}
-		}
 	}
-	.weather_container{
+	hr{
+		width: 100%;
+		margin: 4px 0 0 0;
+		border-top: 0.5px solid $black;
+	}
+	@media screen and (max-width: 992px){
+		display: none;
+	}
+}
+.name_container{
+	@extend %flex-center;
+	flex-direction: column;
+	flex: 0.7;
+	z-index: 4;
+	@media screen and (max-width: 992px){
+		align-items: flex-start;
+}
+
+	#locationCounty, #locationVillage{
 		@extend %flex-center;
-		flex: 0.3;
-		gap: 16px;
-		h2{
+		width: 100%;
+		@media screen and (max-width: 992px){
+				justify-content: flex-start;
+		}
+		select{
+			// -webkit-appearance: none;
+			// -moz-appearance: none;
+			// appearance: none;
+
 			font-size: 48px;
 			color: black;
 			font-family: $font;
-			margin-bottom: 4px;
-		}
-		img{
-			width: 48px;
-		}
-		@media screen and (max-width: 992px){
-			flex: none;
-			gap: 8px;
-		}
-		@media screen and (max-width: 576px){
-			gap: 4px;
-			h2{
-				font-size: 28px
+			font-weight: 500;
+			border: none;
+			padding: 0;
+			margin: 0;
+			width: fit-content;
+			background: none;
+			cursor: pointer;
+			position: relative;
+			transition-duration: .3s;
+			@media screen and (max-width: 992px){
+				font-size: 32px;
 			}
-			img{
-				width: 32px;
+			@media screen and (max-width: 576px){
+				font-size: 24px;
 			}
+
+			option{
+				font-size: 20px;
+				text-align: center;
+			}
+
+		}
+	}
+
+	.date_container{
+		@extend %flex-center;
+		font-size: 24px;
+		color: black;
+		font-family: $font;
+		gap: 16px;
+		padding: 20px 36px 20px 20px;
+	}
+	@media screen and (max-width: 992px){
+		flex: none;
+		font-size: 48px;
+		text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+		.date_container{
+			font-size: 16px;
+			padding: 12px 0 0 4px;
+		}
+	}
+	@media screen and (max-width: 576px){
+		font-size: 28px;
+		.date_container{
+			font-size: 16px;
+			gap: 12px;
+			padding: 4px 0 0 4px;
+		}
+	}
+}
+.weather_container{
+	@extend %flex-center;
+	flex: 0.3;
+	gap: 16px;
+	z-index: 4;
+	h2{
+		font-size: 48px;
+		color: black;
+		font-family: $font;
+		margin-bottom: 4px;
+	}
+	.weatherIcon_container{
+		width: 48px;
+	}
+	@media screen and (max-width: 992px){
+		flex: none;
+		gap: 8px;
+		text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+		margin: 8px 4px 0 0;
+	}
+	@media screen and (max-width: 576px){
+		gap: 4px;
+		h2{
+			font-size: 28px
+		}
+		.weatherIcon_container{
+			width: 32px;
 		}
 	}
 }
@@ -163,27 +218,52 @@ body{
 	@extend %flex-center;
 	width: 100%;
 	height: 100%;
-	background-image: url("../images/scene.png");
 	background-size: cover;
 	background-position: center;
 	box-shadow: inset 0 0 4px #000000;
 	border-radius: 8px;
+	z-index: 2;
+	transition-duration: .3s;
+	cursor: pointer;
+	&:hover{
+		filter: brightness(95%)
+
+	}
+
 }
 
-.none{
-	@extend %flex-center;
-	min-width: 100px;
-	width: 320px;
-	@media screen and (max-width: 992px){
-		display: none;
-	}
-}
 
 .week_container{
 	@extend %flex-center;
 	flex-direction: column;
 	width: 100%;
+	height: 0px;
+	opacity: 0;
 	gap: 20px;
+	transition: height 1s, opacity 2s;
+	.futureTitle_container{
+		@extend %flex-center;
+		flex-direction: column;
+		width: 80%;
+		max-width: 720px;
+		padding: 0 32px;
+		p{
+			font-size: 14px;
+			color: $black;
+			font-family: $font;
+		}
+		hr{
+			width: 100%;
+			margin: 4px 0 0 0;
+			border-top: 0.5px solid $black;
+		}
+		@media screen and (max-width: 1200px){
+			width: 100%;
+			padding: 0 12px;
+		}
+	}
+
+
 	.daily_container{
 		@extend %flex-center;
 		width: 80%;
@@ -201,12 +281,15 @@ body{
 			gap: 4px;
 			width: 60px;
 			height: 100%;
+			transform: translateY(40%);
+			opacity: 0%;
+			transition-duration: 1s;
 			p{
 				font-size: 16px;
 				color: $black;
 				font-family: $font;
 			}
-			img{
+			.weatherIcon_container{
 				width: 20px;
 				height: 20px;
 				opacity: 80%;
@@ -218,6 +301,7 @@ body{
 		@extend %flex-center;
 		width: 80%;
 		max-width: 720px;
+		height: 100px;
 		justify-content: space-between;
 		padding: 0 20px;
 		@media screen and (max-width: 1200px){
@@ -226,16 +310,21 @@ body{
 		}
 
 		.temperature{
+			overflow: hidden;
 			position: relative;
 			@extend %flex-center;
 			justify-content: flex-end;
 			flex-direction: column;
 			width: 60px;
 			height: 100px;
+			transform: translateY(40%);
+			opacity: 0%;
+			transition-duration: 1s;
 			.temperatureH, .temperatureL{
 				position: absolute;
 				@extend %flex-center;
 				flex-direction: column;
+
 				p{
 					font-size: 14px;
 					padding-left: 6px;
@@ -267,12 +356,140 @@ body{
 				padding: 0 50px;
 				stroke-width: 1px;
 				overflow: visible;
+
 				@media screen and (max-width: 1200px){
 					padding: 0 28px;
 				}
 				path{
 					stroke: rgba(0, 0, 0, 0.3);
 					fill: none;
+				}
+			}
+		}
+	}
+}
+
+// animation
+.weatherIcon{
+	animation-name: floating;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes floating {
+		0% {transform: translateY(4px);}
+		50% {transform: translateY(0px);}
+		100% {transform: translateY(4px);}
+}
+
+#IconSun {
+	overflow: visible;
+	fill: none;
+	stroke: #000000;
+	stroke-miterlimit: 10;
+	.line{
+		animation: shining;
+		animation-duration: 3s;
+		animation-iteration-count: infinite;
+		transform-origin: center;
+	}
+	#line2{
+		animation-delay: -1.5s
+	}
+}
+
+@keyframes shining {
+	0% {transform: scale(1); ;}
+	50% {transform: scale(1.1)}
+	100% {width: scale(1)}
+}
+
+#IconCloud{
+	fill: none;
+	stroke: #000000;
+	stroke-miterlimit: 10;
+}
+
+#IconRain{
+	overflow: visible;
+	fill: none;
+	stroke: #000000;
+	stroke-miterlimit: 10;
+
+	.line{
+		animation-name: raining;
+		animation-duration: 1.5s;
+		animation-iteration-count: infinite;
+	}
+	#line2{
+		animation-delay: -0.5s;
+	}
+	#line3{
+		animation-delay: -1s;
+	}
+}
+
+@keyframes raining {
+	0% {transform: translateY(0px) translateX(0px);}
+	100% {transform: translateY(7px) translateX(-2px); opacity: 0;}
+}
+
+// click
+.card.active{
+	.detail_container{
+		gap: 20px;
+		.week_container{
+			height: 224px;
+			opacity: 1;
+			.daily_container{
+				.future_container{
+					transform: translateY(0%);
+					opacity: 100%;
+					transition-delay: 0.2s;
+				}
+				#future_container_1{
+					transition-delay: 0.4s;
+				}
+				#future_container_2{
+					transition-delay: 0.6s;
+				}
+				#future_container_3{
+					transition-delay: 0.8s;
+				}
+				#future_container_4{
+					transition-delay: 1s;
+				}
+			}
+
+			.temperature_container{
+				.temperature{
+					transform: translateY(0%);
+					opacity: 100%;
+					transition-delay: 0.2s;
+				}
+				#temperature_1{
+					transition-delay: 0.4s;
+				}
+				#temperature_2{
+					transition-delay: 0.6s;
+				}
+				#temperature_3{
+					transition-delay: 0.8s;
+				}
+				#temperature_4{
+					transition-delay: 1s;
+				}
+				.temperature_line{
+					svg path{
+						stroke-dasharray: 1000;
+						stroke-dashoffset: 1000;
+						animation: dash 5s linear forwards 0.6s;
+						@keyframes dash {
+						to {
+							stroke-dashoffset: 0;
+							}
+						}
+					}
 				}
 			}
 		}

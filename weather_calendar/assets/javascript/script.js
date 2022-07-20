@@ -17,28 +17,101 @@ $(function getTime() {
   $('.date_container').html(print);
 });
 
-$.getJSON(
-  'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-063?Authorization=CWB-C67AAE13-37AA-4F9D-892F-E25483690887&locationName=%E4%BF%A1%E7%BE%A9%E5%8D%80&elementName=&startTime=',
-).done(function (re) {
-  T = re.records.locations[0].location[0].weatherElement[1];
+// get geolocation
+var geo = navigator.geolocation;
+var option = {
+  enableAcuracy: false,
+  maximumAge: 0,
+  timeout: 600000,
+};
+geo.getCurrentPosition(successCallback);
+
+function successCallback(position) {
+  getLocation =
+    'https://api.nlsc.gov.tw/other/TownVillagePointQuery/' +
+    position.coords.longitude +
+    '/' +
+    position.coords.latitude +
+    '/4326';
+  getApiCode(getLocation);
+}
+
+function getApiCode(getLocation) {
+  $.getJSON(getLocation).done(function (clientLocation) {
+    for (c = 0; c < countyApi.length; c++) {
+      if (clientLocation.ctyName == countyApi[c].name) {
+        break;
+      }
+    }
+    clientCountyCode = countyApi[c].apiCode;
+    clientLocationTown = clientLocation.townName;
+    getCwbApi(clientCountyCode, clientLocationTown);
+  });
+}
+
+function getCwbApi(clientCountyCode, clientLocationTown) {
+  $.getJSON(
+    'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=CWB-C67AAE13-37AA-4F9D-892F-E25483690887&locationId=F-D0047-' +
+      clientCountyCode,
+  ).done(function (CWB) {
+    getVillage(CWB, clientLocationTown);
+    print = `
+    <option value="${clientCountyCode}">${CWB.records.locations[0].locationsName}</option>
+
+  `;
+    $('#theCountySelect').html(print);
+    AllCounty();
+    changePicture(clientCountyCode);
+  });
+}
+
+function getVillage(CWB, clientLocationTown) {
+  let check = '';
+  for (v = 0; v < CWB.records.locations[0].location.length; v++) {
+    if (
+      clientLocationTown == CWB.records.locations[0].location[v].locationName
+    ) {
+      check = 1;
+      break;
+    } else {
+      check = 0;
+    }
+  }
+  if (check == 0) {
+    v = 0;
+  }
+  render(CWB, v);
+}
+
+function render(CWB, v) {
+  T = CWB.records.locations[0].location[v].weatherElement[1];
   TNow = T.time[0].elementValue[0].value;
 
-  Wx = re.records.locations[0].location[0].weatherElement[6];
+  Wx = CWB.records.locations[0].location[v].weatherElement[6];
   WxNow = Wx.time[0].elementValue[1].value;
 
   weatherSwitch(WxNow);
+  AllVillage(CWB);
+
+  print = `
+  ${CWB.records.locations[0].location[v].locationName}
+  `;
+  $('#theVillage').html(print);
 
   print = `
 		<h2>${TNow}°</h2>
-		<img src=${weatherIcon} alt="" />
+    <div class="weatherIcon_container">${weatherIcon}</div>
 		`;
   $('.weather_container').html(print);
 
+  $('.temperature_line').empty();
   temperatureRange();
 
   // week
   const date1 = new Date(now);
   deleteFirstDay(); // 去掉第一天的資料
+  $('.daily_container').empty();
+  $('.temperature').remove();
 
   for (i = 0; i < 5; i++) {
     date1.setDate(date1.getDate() + 1);
@@ -56,18 +129,19 @@ $.getJSON(
     weatherSwitch(futureWx);
 
     print = `
-				<div class="future_container">
+				<div class="future_container" id="future_container_${i}">
           <p>${futureWeek}</p>
           <p>${futureDate}</p>
-          <img src="${weatherIcon}" alt="" />
+          <div class="weatherIcon_container">${weatherIcon}</div>
 				</div>
 				`;
+
     $('.daily_container').append(print);
 
     LowPosition = 80 - (futureTempL - MinTemp) * distance;
     HighPosition = 0 + (MaxTemp - futureTempH) * distance;
     print = `
-    <div class="temperature">
+    <div class="temperature" id="temperature_${i}">
       <div class="temperatureH" style="top: ${HighPosition}px">
         <p id="futureTempHText">${futureTempH}°</p>
         <div class="dot"></div>
@@ -80,16 +154,54 @@ $.getJSON(
     `;
     $('.temperature_container').append(print);
   }
-});
+}
 
-// 判斷天氣
+// weather_icon
 function weatherSwitch(thisWx) {
   if (thisWx <= 3 || (24 <= thisWx && thisWx <= 25)) {
-    weatherIcon = './assets/images/sun.svg';
+    weatherIcon = `<svg class="weatherIcon"
+    id="IconSun"
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    viewBox="0 0 30 30">
+    <line class="line" id="line1" x1="15" y1="30" x2="15" y2="26.9"/>
+    <line class="line" id="line1" x1="15" y1="3.8" x2="15" y2="0"/>
+    <line class="line" id="line2" x1="25.6" y1="25.6" x2="23.5" y2="23.5"/>
+    <line class="line" id="line2" x1="7.1" y1="7.1" x2="4.4" y2="4.4"/>
+    <line class="line" id="line1" x1="30" y1="15" x2="26.7" y2="15"/>
+    <line class="line" id="line1" x1="3.6" y1="15" x2="0" y2="15"/>
+    <line class="line" id="line2" x1="25.6" y1="4.4" x2="23.1" y2="6.9"/>
+    <line class="line" id="line2" x1="6.7" y1="23.3" x2="4.4" y2="25.6"/>
+    <circle class="circle" cx="15.2" cy="15.4" r="8.1"/>
+</svg>`;
   } else if ((4 <= thisWx && thisWx <= 7) || (26 <= thisWx && thisWx <= 28)) {
-    weatherIcon = './assets/images/cloud.svg';
+    weatherIcon = `<svg class="weatherIcon"
+      id="IconCloud"
+      xmlns="http://www.w3.org/2000/svg"
+      x="0px"
+      y="0px"
+      viewBox="0 0 31.3 23.9">
+      <path d="M30.6,15.1c0,3.8-3.1,6.9-6.9,6.9c-1.4,0-2.7-0.4-3.9-1.2c-2.5,2.9-6.8,3.3-9.7,0.8l0,0
+        c-3.5,1.4-7.6-0.3-9-3.9s0.3-7.6,3.9-9C4.9,8.3,4.9,7.9,4.9,7.5c0-3.8,3.1-6.9,6.9-6.9c1.9,0,3.7,0.8,5,2.2
+        c1-0.6,2.2-0.9,3.4-0.9c3.8,0,6.9,3.1,6.9,6.9l0,0c0,0.1,0,0.2,0,0.3C29.3,10.3,30.6,12.6,30.6,15.1z" />
+  </svg>`;
   } else {
-    weatherIcon = './assets/images/rain.svg';
+    weatherIcon = `<svg class="weatherIcon"
+    id="IconRain"
+    xmlns="http://www.w3.org/2000/svg"
+    x="0px"
+    y="0px"
+    viewBox="0 0 31.4 28.7">
+
+    <path class="st0" d="M30.6,15.2c0,3.8-3.2,7-7,7c-1.4,0-2.7-0.4-3.8-1.2c-2.5,3-6.9,3.3-9.9,0.8l0,0c-0.8,0.3-1.5,0.4-2.4,0.4
+      c-3.8,0-6.9-3.2-6.9-7.1c0-2.7,1.6-5.1,4.2-6.2C4.7,8.5,4.7,8.1,4.7,7.7c0-3.8,3.2-7,7-7c1.9,0,3.7,0.8,5,2.2
+      c1.1-0.7,2.3-1,3.5-1c3.8,0,6.9,3.1,7,6.9c0,0.1,0,0.2,0,0.3C29.3,10.4,30.6,12.7,30.6,15.2z"/>
+    <line class="line" id="line1" x1="7.2" y1="22.5" x2="4.8" y2="26"/>
+    <line class="line" id="line2" x1="14.9" y1="24.7" x2="12.5" y2="28.2"/>
+    <line class="line" id="line3" x1="23.6" y1="22.5" x2="21.2" y2="26"/>
+</svg>
+`;
   }
 }
 
@@ -97,14 +209,17 @@ function weatherSwitch(thisWx) {
 function deleteFirstDay() {
   y = 0;
   for (x = 0; x < 5; x++) {
-    WxNowStartTime = Wx.time[y].startTime;
+    WxNowStartTime = Wx.time[x].startTime;
     let todayDate =
       now.getFullYear() +
       '-' +
       ('0' + (now.getMonth() + 1)).slice(-2) +
       '-' +
       ('0' + now.getDate()).slice(-2);
-    if (JSON.stringify(WxNowStartTime).includes(todayDate) == true) {
+    if (
+      JSON.stringify(WxNowStartTime).includes(todayDate) == true ||
+      JSON.stringify(WxNowStartTime).includes('00:00:00') == true
+    ) {
       y++;
     }
   }
@@ -150,7 +265,9 @@ function SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance) {
   75 ${HighP3} ,100 ${HighP3} C125 ${HighP3},
   125 ${HighP4} ,150 ${HighP4} C175 ${HighP4},
   175 ${HighP5} ,200,${HighP5}"
-  ></path>
+  >
+  </path>
+
 </svg>
 
   <svg id="SVGlineL" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
@@ -163,4 +280,57 @@ function SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance) {
     ></path>
   </svg>`;
   $('.temperature_line').append(print);
+}
+
+// click
+$('.picture_container').click(function () {
+  $('.card').toggleClass('active');
+});
+
+// 動態匯入縣市、鄉鎮資料
+function AllCounty() {
+  for (i = 0; i < countyApi.length; i++) {
+    arrayCounty = `
+  <option value="${countyApi[i].apiCode}">${countyApi[i].name}</option>`;
+    $('#locationCounty').children().append(arrayCounty);
+  }
+}
+
+function AllVillage(CWB) {
+  for (i = 0; i < CWB.records.locations[0].location.length; i++) {
+    arrayCounty = `
+  <option value="${i}">${CWB.records.locations[0].location[i].locationName}</option>`;
+    $('#locationVillage').children().append(arrayCounty);
+  }
+}
+
+// change county data
+$('#theCountySelect').change(function changeCounty() {
+  clientCountyCode = $('#theCountySelect').val();
+  clientLocationTown = '';
+  getCwbApi(clientCountyCode, clientLocationTown);
+  $('#theVillageSelect').empty();
+});
+
+// change village data
+$('#theVillageSelect').change(function changeVillage() {
+  clientCountyCode = $('#theCountySelect').val();
+  VillageValue = $('#theVillageSelect option:selected').text();
+  getCwbApi(clientCountyCode, VillageValue);
+});
+
+// change picture
+function changePicture(clientCountyCode) {
+  console.log(clientCountyCode);
+  for (x = 0; x < countyApi.length; x++) {
+    if (countyApi[x].apiCode.includes(clientCountyCode) == true) {
+      break;
+    }
+  }
+  console.log(x);
+  console.log(countyApi[x].picture);
+  print = `
+  <div class="picture_container" style="background-image: url(${countyApi[x].picture})"></div>
+`;
+  $('.picture_container').html(print);
 }
