@@ -161,12 +161,6 @@ body {
   height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
 }
-@media screen and (max-width: 576px) {
-  body {
-    padding: 0px;
-    background-image: none;
-  }
-}
 
 .card {
   position: relative;
@@ -183,11 +177,6 @@ body {
   .card {
     width: 100%;
     flex-direction: column;
-  }
-}
-@media screen and (max-width: 576px) {
-  .card {
-    box-shadow: none;
   }
 }
 
@@ -289,12 +278,9 @@ body {
   font-family: "Noto Serif TC", serif;
   font-weight: 500;
   border: none;
-  padding: 0;
-  margin: 0;
   width: fit-content;
   background: none;
   cursor: pointer;
-  position: relative;
   transition-duration: 0.3s;
   text-align: center;
 }

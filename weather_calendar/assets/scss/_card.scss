@@ -15,10 +15,6 @@ body{
 	padding: 20px;
 	height: 100vh; /* Fallback for browsers that do not support Custom Properties */
   height: calc(var(--vh, 1vh) * 100);
-	@media screen and (max-width: 576px){
-		padding: 0px;
-		background-image: none;
-	}
 }
 
 .card{
@@ -36,9 +32,6 @@ body{
 	@media screen and (max-width: 992px){
 		width: 100%;
 		flex-direction: column;
-	}
-	@media screen and (max-width: 576px){
-		box-shadow: none;
 	}
 }
 
@@ -137,14 +130,13 @@ body{
 			font-family: $font;
 			font-weight: 500;
 			border: none;
-			padding: 0;
-			margin: 0;
 			width: fit-content;
 			background: none;
 			cursor: pointer;
-			position: relative;
 			transition-duration: .3s;
 			text-align: center;
+
+
 
 			@media screen and (max-width: 992px){
 				text-align: start;
