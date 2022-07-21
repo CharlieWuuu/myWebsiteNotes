@@ -296,10 +296,12 @@ body {
   cursor: pointer;
   position: relative;
   transition-duration: 0.3s;
+  text-align: start;
 }
 @media screen and (max-width: 992px) {
   .name_container #locationCounty select, .name_container #locationVillage select {
     font-size: 32px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   }
 }
 @media screen and (max-width: 576px) {
@@ -309,7 +311,6 @@ body {
 }
 .name_container #locationCounty select option, .name_container #locationVillage select option {
   font-size: 20px;
-  text-align: center;
 }
 .name_container .date_container {
   font-size: 24px;
@@ -322,7 +323,7 @@ body {
   .name_container {
     flex: none;
     font-size: 48px;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   }
   .name_container .date_container {
     font-size: 16px;
@@ -358,7 +359,7 @@ body {
   .weather_container {
     flex: none;
     gap: 8px;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     margin: 8px 4px 0 0;
   }
 }

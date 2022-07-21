@@ -72,7 +72,7 @@ let countyApi = [
   {
     name: '嘉義市',
     apiCode: '059',
-    picture: './assets/images/scene_chayi_city.jpg',
+    picture: './assets/images/scene_chayi_city.png',
   },
   {
     name: '臺北市',
@@ -92,7 +92,7 @@ let countyApi = [
   {
     name: '臺中市',
     apiCode: '075',
-    picture: './assets/images/scene_taichung.jpg',
+    picture: './assets/images/scene_taichung.png',
   },
   {
     name: '臺南市',
