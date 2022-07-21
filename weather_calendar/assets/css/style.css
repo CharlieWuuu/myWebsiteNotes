@@ -158,11 +158,12 @@ body {
   background-image: url("../images/bg.png");
   height: 100vh;
   padding: 20px;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 }
 @media screen and (max-width: 576px) {
   body {
     padding: 0px;
-    height: 90vh;
     background-image: none;
   }
 }

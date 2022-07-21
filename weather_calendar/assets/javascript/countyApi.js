@@ -77,7 +77,7 @@ let countyApi = [
   {
     name: '臺北市',
     apiCode: '063',
-    picture: './assets/images/scene_taipei.jpg',
+    picture: './assets/images/scene_taipei.png',
   },
   {
     name: '高雄市',

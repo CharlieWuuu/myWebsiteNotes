@@ -1,3 +1,9 @@
+// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+let vh = window.innerHeight * 0.01;
+// Then we set the value in the --vh custom property to the root of the document
+document.documentElement.style.setProperty('--vh', `${vh}px`);
+console.log(document.documentElement);
+
 const now = new Date();
 const day_list = ['日', '一', '二', '三', '四', '五', '六'];
 
@@ -18,15 +24,21 @@ $(function getTime() {
 });
 
 // get geolocation
-var geo = navigator.geolocation;
 var option = {
   enableAcuracy: false,
   maximumAge: 0,
   timeout: 600000,
 };
-geo.getCurrentPosition(successCallback);
+navigator.geolocation.getCurrentPosition(successCallback, error);
 
+// if did't get user's geolocation
+function error() {
+  getCwbApi('063', '信義區');
+}
+
+// if got user's geolocation
 function successCallback(position) {
+  x = position;
   getLocation =
     'https://api.nlsc.gov.tw/other/TownVillagePointQuery/' +
     position.coords.longitude +
@@ -34,8 +46,10 @@ function successCallback(position) {
     position.coords.latitude +
     '/4326';
   getApiCode(getLocation);
+  console.log(x);
 }
 
+// check the apiCode
 function getApiCode(getLocation) {
   $.getJSON(getLocation).done(function (clientLocation) {
     for (c = 0; c < countyApi.length; c++) {
@@ -49,22 +63,51 @@ function getApiCode(getLocation) {
   });
 }
 
+// get the target API
 function getCwbApi(clientCountyCode, clientLocationTown) {
   $.getJSON(
     'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-D0047-093?Authorization=CWB-C67AAE13-37AA-4F9D-892F-E25483690887&locationId=F-D0047-' +
       clientCountyCode,
   ).done(function (CWB) {
-    getVillage(CWB, clientLocationTown);
-    print = `
-    <option value="${clientCountyCode}">${CWB.records.locations[0].locationsName}</option>
-
-  `;
-    $('#theCountySelect').html(print);
-    AllCounty();
-    changePicture(clientCountyCode);
+    renderCounty(CWB, clientCountyCode, clientLocationTown);
   });
 }
 
+// render the county name
+function renderCounty(CWB, clientCountyCode, clientLocationTown) {
+  print = `
+  <option value="${clientCountyCode}">${CWB.records.locations[0].locationsName}</option>
+  `;
+  $('#theCountySelect').html(print);
+  AllCounty();
+  changePicture(clientCountyCode);
+  getVillage(CWB, clientLocationTown);
+}
+
+// add all options of county
+function AllCounty() {
+  for (i = 0; i < countyApi.length; i++) {
+    arrayCounty = `
+    <option value="${countyApi[i].apiCode}">${countyApi[i].name}</option>`;
+    $('#locationCounty').children().append(arrayCounty);
+    $('#locationCounty option:selected').hide();
+  }
+}
+
+// change picture
+function changePicture(clientCountyCode) {
+  for (x = 0; x < countyApi.length; x++) {
+    if (countyApi[x].apiCode.includes(clientCountyCode) == true) {
+      break;
+    }
+  }
+  print = `
+  <div class="picture_container" style="background-image: url(${countyApi[x].picture})"></div>
+`;
+  $('.picture_container').html(print);
+}
+
+// get the index of selected village
 function getVillage(CWB, clientLocationTown) {
   let check = '';
   for (v = 0; v < CWB.records.locations[0].location.length; v++) {
@@ -80,10 +123,31 @@ function getVillage(CWB, clientLocationTown) {
   if (check == 0) {
     v = 0;
   }
-  render(CWB, v);
+  renderVillage(CWB, clientLocationTown, v);
+  renderClimate(CWB, v);
 }
 
-function render(CWB, v) {
+// render the village name
+function renderVillage(CWB, clientLocationTown, v) {
+  print = `
+  <option value="${clientLocationTown}">${CWB.records.locations[0].location[v].locationName}</option>
+  `;
+  $('#theVillageSelect').html(print);
+  AllVillage(CWB);
+}
+
+// add all options of village
+function AllVillage(CWB) {
+  for (i = 0; i < CWB.records.locations[0].location.length; i++) {
+    arrayCounty = `
+    <option value="${i}">${CWB.records.locations[0].location[i].locationName}</option>`;
+    $('#locationVillage').children().append(arrayCounty);
+    $('#locationVillage option:selected').hide();
+  }
+}
+
+//  render the climate information
+function renderClimate(CWB, v) {
   T = CWB.records.locations[0].location[v].weatherElement[1];
   TNow = T.time[0].elementValue[0].value;
 
@@ -91,7 +155,6 @@ function render(CWB, v) {
   WxNow = Wx.time[0].elementValue[1].value;
 
   weatherSwitch(WxNow);
-  AllVillage(CWB);
 
   print = `
   ${CWB.records.locations[0].location[v].locationName}
@@ -105,11 +168,12 @@ function render(CWB, v) {
   $('.weather_container').html(print);
 
   $('.temperature_line').empty();
+
   temperatureRange();
 
   // week
   const date1 = new Date(now);
-  deleteFirstDay(); // 去掉第一天的資料
+  deleteFirstDay(); // delete first day information
   $('.daily_container').empty();
   $('.temperature').remove();
 
@@ -156,7 +220,7 @@ function render(CWB, v) {
   }
 }
 
-// weather_icon
+// add weather icon
 function weatherSwitch(thisWx) {
   if (thisWx <= 3 || (24 <= thisWx && thisWx <= 25)) {
     weatherIcon = `<svg class="weatherIcon"
@@ -205,7 +269,63 @@ function weatherSwitch(thisWx) {
   }
 }
 
-// 去掉第一天的資料
+// get the max and min temperature of next five days
+function temperatureRange() {
+  deleteFirstDay();
+  const MaxTempArray = [];
+  const MinTempArray = [];
+  for (i = 0; i < 5; i++) {
+    futureTempH = T.time[y + i * 2].elementValue[0].value;
+    MaxTempArray.push(futureTempH);
+    futureTempL = T.time[y + 1 + i * 2].elementValue[0].value;
+    MinTempArray.push(futureTempL);
+  }
+
+  MaxTemp = Math.max(...MaxTempArray);
+  MinTemp = Math.min(...MinTempArray); // standard of line
+  distance = 70 / (MaxTemp - MinTemp); // get the class interval
+
+  SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance);
+}
+
+// render the number line of temperature
+function SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance) {
+  HighP1 = 18 + (MaxTemp - MaxTempArray[0]) * distance;
+  HighP2 = 18 + (MaxTemp - MaxTempArray[1]) * distance;
+  HighP3 = 18 + (MaxTemp - MaxTempArray[2]) * distance;
+  HighP4 = 18 + (MaxTemp - MaxTempArray[3]) * distance;
+  HighP5 = 18 + (MaxTemp - MaxTempArray[4]) * distance;
+
+  LowP1 = 82 - (MinTempArray[0] - MinTemp) * distance;
+  LowP2 = 82 - (MinTempArray[1] - MinTemp) * distance;
+  LowP3 = 82 - (MinTempArray[2] - MinTemp) * distance;
+  LowP4 = 82 - (MinTempArray[3] - MinTemp) * distance;
+  LowP5 = 82 - (MinTempArray[4] - MinTemp) * distance;
+  print = `
+  <svg id="SVGlineH" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
+    <path
+    d="M0 ${HighP1} C25 ${HighP1},
+    25 ${HighP2} ,50 ${HighP2} C75 ${HighP2},
+    75 ${HighP3} ,100 ${HighP3} C125 ${HighP3},
+    125 ${HighP4} ,150 ${HighP4} C175 ${HighP4},
+    175 ${HighP5} ,200,${HighP5}"
+    >
+    </path>
+  </svg>
+
+  <svg id="SVGlineL" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
+    <path
+    d="M0 ${LowP1} C25 ${LowP1},
+    25 ${LowP2} ,50 ${LowP2} C75 ${LowP2},
+    75 ${LowP3} ,100 ${LowP3} C125 ${LowP3},
+    125 ${LowP4} ,150 ${LowP4} C175 ${LowP4},
+    175 ${LowP5} ,200,${LowP5}"
+    ></path>
+  </svg>`;
+  $('.temperature_line').append(print);
+}
+
+// delete first day information
 function deleteFirstDay() {
   y = 0;
   for (x = 0; x < 5; x++) {
@@ -225,112 +345,21 @@ function deleteFirstDay() {
   }
 }
 
-// 取得一整週的所有氣溫數值，判斷極端值，決定級距
-function temperatureRange() {
-  deleteFirstDay();
-  const MaxTempArray = [];
-  const MinTempArray = [];
-  for (i = 0; i < 5; i++) {
-    futureTempH = T.time[y + i * 2].elementValue[0].value;
-    MaxTempArray.push(futureTempH);
-    futureTempL = T.time[y + 1 + i * 2].elementValue[0].value;
-    MinTempArray.push(futureTempL);
-  }
-
-  MaxTemp = Math.max(...MaxTempArray);
-  MinTemp = Math.min(...MinTempArray); // 數線基準點
-  distance = 70 / (MaxTemp - MinTemp); // 數線級距
-
-  SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance);
-}
-
-// 動態畫數線
-function SVGline(MaxTempArray, MinTempArray, MaxTemp, MinTemp, distance) {
-  HighP1 = 18 + (MaxTemp - MaxTempArray[0]) * distance;
-  HighP2 = 18 + (MaxTemp - MaxTempArray[1]) * distance;
-  HighP3 = 18 + (MaxTemp - MaxTempArray[2]) * distance;
-  HighP4 = 18 + (MaxTemp - MaxTempArray[3]) * distance;
-  HighP5 = 18 + (MaxTemp - MaxTempArray[4]) * distance;
-
-  LowP1 = 82 - (MinTempArray[0] - MinTemp) * distance;
-  LowP2 = 82 - (MinTempArray[1] - MinTemp) * distance;
-  LowP3 = 82 - (MinTempArray[2] - MinTemp) * distance;
-  LowP4 = 82 - (MinTempArray[3] - MinTemp) * distance;
-  LowP5 = 82 - (MinTempArray[4] - MinTemp) * distance;
-  print = `
-  <svg id="SVGlineH" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
-  <path
-  d="M0 ${HighP1} C25 ${HighP1},
-  25 ${HighP2} ,50 ${HighP2} C75 ${HighP2},
-  75 ${HighP3} ,100 ${HighP3} C125 ${HighP3},
-  125 ${HighP4} ,150 ${HighP4} C175 ${HighP4},
-  175 ${HighP5} ,200,${HighP5}"
-  >
-  </path>
-
-</svg>
-
-  <svg id="SVGlineL" width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
-    <path
-    d="M0 ${LowP1} C25 ${LowP1},
-    25 ${LowP2} ,50 ${LowP2} C75 ${LowP2},
-    75 ${LowP3} ,100 ${LowP3} C125 ${LowP3},
-    125 ${LowP4} ,150 ${LowP4} C175 ${LowP4},
-    175 ${LowP5} ,200,${LowP5}"
-    ></path>
-  </svg>`;
-  $('.temperature_line').append(print);
-}
-
-// click
+// when click picture
 $('.picture_container').click(function () {
   $('.card').toggleClass('active');
 });
 
-// 動態匯入縣市、鄉鎮資料
-function AllCounty() {
-  for (i = 0; i < countyApi.length; i++) {
-    arrayCounty = `
-  <option value="${countyApi[i].apiCode}">${countyApi[i].name}</option>`;
-    $('#locationCounty').children().append(arrayCounty);
-  }
-}
-
-function AllVillage(CWB) {
-  for (i = 0; i < CWB.records.locations[0].location.length; i++) {
-    arrayCounty = `
-  <option value="${i}">${CWB.records.locations[0].location[i].locationName}</option>`;
-    $('#locationVillage').children().append(arrayCounty);
-  }
-}
-
-// change county data
+// if change county data
 $('#theCountySelect').change(function changeCounty() {
   clientCountyCode = $('#theCountySelect').val();
   clientLocationTown = '';
   getCwbApi(clientCountyCode, clientLocationTown);
-  $('#theVillageSelect').empty();
 });
 
-// change village data
+// if change village data
 $('#theVillageSelect').change(function changeVillage() {
   clientCountyCode = $('#theCountySelect').val();
   VillageValue = $('#theVillageSelect option:selected').text();
   getCwbApi(clientCountyCode, VillageValue);
 });
-
-// change picture
-function changePicture(clientCountyCode) {
-  console.log(clientCountyCode);
-  for (x = 0; x < countyApi.length; x++) {
-    if (countyApi[x].apiCode.includes(clientCountyCode) == true) {
-      break;
-    }
-  }
-  console.log(x);
-  console.log(countyApi[x].picture);
-  print = `
-  <div class="picture_container" style="background-image: url(${countyApi[x].picture})"></div>
-`;
-  $('.picture_container').html(print);
-}
