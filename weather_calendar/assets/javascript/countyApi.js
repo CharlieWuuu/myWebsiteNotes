@@ -12,7 +12,7 @@ let countyApi = [
   {
     name: '新竹縣',
     apiCode: '011',
-    picture: './assets/images/scene_shinchu_county.jpeg',
+    picture: './assets/images/scene_shinchu_county.jpg',
   },
   {
     name: '苗栗縣',
@@ -22,7 +22,7 @@ let countyApi = [
   {
     name: '彰化縣',
     apiCode: '019',
-    picture: './assets/images/scene_chanhua.jpg',
+    picture: './assets/images/scene_changhua.jpg',
   },
   {
     name: '南投縣',
@@ -67,12 +67,12 @@ let countyApi = [
   {
     name: '新竹市',
     apiCode: '055',
-    picture: './assets/images/scene_shinchu_city.jpeg',
+    picture: './assets/images/scene_shinchu_city.jpg',
   },
   {
     name: '嘉義市',
     apiCode: '059',
-    picture: './assets/images/scene_chayi_city.png',
+    picture: './assets/images/scene_chayi_city.jpg',
   },
   {
     name: '臺北市',
@@ -87,12 +87,12 @@ let countyApi = [
   {
     name: '新北市',
     apiCode: '071',
-    picture: './assets/images/scene_xinbei.jpg',
+    picture: './assets/images/scene_xinbei.png',
   },
   {
     name: '臺中市',
     apiCode: '075',
-    picture: './assets/images/scene_taichung.png',
+    picture: './assets/images/scene_taichung.jpg',
   },
   {
     name: '臺南市',

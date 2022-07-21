@@ -144,9 +144,10 @@ body{
 			cursor: pointer;
 			position: relative;
 			transition-duration: .3s;
-			text-align: start;
+			text-align: center;
 
 			@media screen and (max-width: 992px){
+				text-align: start;
 				font-size: 32px;
 				text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 			}
