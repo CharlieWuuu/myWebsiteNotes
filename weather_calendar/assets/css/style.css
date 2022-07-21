@@ -272,7 +272,19 @@ body {
     justify-content: flex-start;
   }
 }
+.name_container #locationCounty::after, .name_container #locationVillage::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 4px solid black;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  margin-left: 4px;
+}
 .name_container #locationCounty select, .name_container #locationVillage select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   font-size: 48px;
   color: black;
   font-family: "Noto Serif TC", serif;

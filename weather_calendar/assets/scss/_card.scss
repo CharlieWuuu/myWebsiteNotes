@@ -124,7 +124,20 @@ body{
 		@media screen and (max-width: 992px){
 			justify-content: flex-start;
 		}
+		&::after {
+			content: "";
+			width: 0;
+			height: 0;
+			border-top: 4px solid black;
+			border-left: 4px solid transparent;
+			border-right: 4px solid transparent;
+			margin-left: 4px;
+		}
 		select{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+
 			font-size: 48px;
 			color: black;
 			font-family: $font;
@@ -135,8 +148,6 @@ body{
 			cursor: pointer;
 			transition-duration: .3s;
 			text-align: center;
-
-
 
 			@media screen and (max-width: 992px){
 				text-align: start;
