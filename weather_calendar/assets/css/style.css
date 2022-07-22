@@ -605,9 +605,12 @@ body {
 
 @keyframes raining {
   0% {
+    -webkit-transform: translateY(0px) translateX(0px);
     transform: translateY(0px) translateX(0px);
   }
   100% {
+    -webkit-transform: translateY(7px) translateX(-2px);
+    opacity: 0;
     transform: translateY(7px) translateX(-2px);
     opacity: 0;
   }
@@ -620,10 +623,12 @@ body {
 
 @keyframes showPicture {
   0% {
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     opacity: 50%;
   }
   100% {
+    -webkit-transform: scale(1);
     transform: scale(1);
     opacity: 100%;
   }
@@ -665,19 +670,19 @@ body {
 }
 
 #temperature_1 {
-  transition-delay: 0.4s;
+  animation-delay: 0.4s;
 }
 
 #temperature_2 {
-  transition-delay: 0.6s;
+  animation-delay: 0.6s;
 }
 
 #temperature_3 {
-  transition-delay: 0.8s;
+  animation-delay: 0.8s;
 }
 
 #temperature_4 {
-  transition-delay: 1s;
+  animation-delay: 1s;
 }
 
 .temperature_line svg path {
@@ -693,10 +698,12 @@ body {
 
 @keyframes showInformation {
   0% {
+    -webkit-transform: translateY(40%);
     transform: translateY(40%);
     opacity: 0%;
   }
   100% {
+    -webkit-transform: translateY(0%);
     transform: translateY(0%);
     opacity: 100%;
   }
