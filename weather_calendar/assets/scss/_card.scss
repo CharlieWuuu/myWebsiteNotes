@@ -300,7 +300,7 @@ body{
 			gap: 4px;
 			width: 60px;
 			height: 100%;
-			opacity: 0;
+			opacity: 1;
 			transition-duration: 1s;
 			p{
 				font-size: 16px;
@@ -329,7 +329,7 @@ body{
 		}
 
 		.temperature{
-			opacity: 0;
+			opacity: 1;
 			overflow: hidden;
 			position: relative;
 			@extend %flex-center;
@@ -461,7 +461,7 @@ body{
 .picture{
 	animation-name: showPicture;
 	animation-duration: 3s;
-	animation-fill-mode: forwards;
+	animation-fill-mode: inherit;
 }
 
 @keyframes showPicture{
@@ -485,40 +485,39 @@ body{
 
 .future_container{
 	animation-name: showInformation;
-	animation-duration: 1s;
-	animation-fill-mode: forwards;
-	animation-delay: 0.2s;
+	animation-duration: 0.8s;
+	animation-fill-mode: inherit;
 }
 #future_container_1{
-	animation-delay: 0.4s;
+	animation-duration: 1.2s;
 }
 #future_container_2{
-	animation-delay: 0.6s;
+	animation-duration: 1.6s;
 }
 #future_container_3{
-	animation-delay: 0.8s;
+	animation-duration: 2.0s;
 }
 #future_container_4{
-	animation-delay: 1s;
+	animation-duration: 2.4s;
 }
 
 	.temperature{
 		animation-name: showInformation;
-		animation-duration: 1s;
-		animation-fill-mode: forwards;
-		animation-delay: 0.2s;
+		animation-duration: 0.8s;
+		animation-fill-mode: inherit;
+
 	}
 	#temperature_1{
-		animation-delay: 0.4s;
+animation-duration: 1.2s;
 	}
 	#temperature_2{
-		animation-delay: 0.6s;
+animation-duration: 1.6s;
 	}
 	#temperature_3{
-		animation-delay: 0.8s;
+animation-duration: 2.0s;
 	}
 	#temperature_4{
-		animation-delay: 1s;
+animation-duration: 2.4s;
 	}
 	.temperature_line{
 		svg path{
