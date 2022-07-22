@@ -100,7 +100,7 @@ function changePicture(clientCountyCode) {
     }
   }
   print = `
-  <div class="picture_container" style="background-image: url(${countyApi[x].picture})"></div>
+  <div class="picture" style="background-image: url(${countyApi[x].picture})"></div>
 `;
   $('.picture_container').html(print);
 }
@@ -343,10 +343,10 @@ function deleteFirstDay() {
   }
 }
 
-// when click picture
-$('.picture_container').click(function () {
-  $('.card').toggleClass('active');
-});
+// render climate information agin
+// function renderDetail() {
+//   $('.future_container').addClass('active');
+// }
 
 // if change county data
 $('#theCountySelect').change(function changeCounty() {

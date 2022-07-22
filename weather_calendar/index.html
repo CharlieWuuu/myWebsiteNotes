@@ -11,7 +11,7 @@
     <script src="./assets/javascript/script.js" defer></script>
   </head>
   <body>
-    <div class="card active">
+    <div class="card">
       <div class="logo_container" id="logo_pad">
         <p>天氣日曆</p>
         <hr />
@@ -24,14 +24,10 @@
         </div>
         <div class="name_container">
           <div id="locationCounty">
-            <select id="theCountySelect">
-              <option value="063" id="defultCounty">臺北市</option>
-            </select>
+            <select id="theCountySelect"></select>
           </div>
           <div id="locationVillage">
-            <select id="theVillageSelect">
-              <option value="7" id="defultVillage">信義區</option>
-            </select>
+            <select id="theVillageSelect"></select>
           </div>
           <div class="date_container"></div>
         </div>
@@ -39,7 +35,9 @@
       </div>
 
       <div class="detail_container">
-        <div class="picture_container"></div>
+        <div class="picture_container">
+          <div class="picture"></div>
+        </div>
         <div class="week_container">
           <div class="futureTitle_container">
             <p>未來5日天氣</p>
