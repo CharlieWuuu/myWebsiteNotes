@@ -283,6 +283,11 @@ body {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
 }
+@media screen and (max-width: 992px) {
+  .name_container #locationCounty::before, .name_container #locationVillage::before {
+    left: 0px;
+  }
+}
 .name_container #locationCounty select, .name_container #locationVillage select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -305,6 +310,7 @@ body {
     text-align: start;
     font-size: 32px;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    margin-left: 12px;
   }
 }
 @media screen and (max-width: 576px) {

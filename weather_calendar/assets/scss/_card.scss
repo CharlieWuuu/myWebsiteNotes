@@ -134,6 +134,9 @@ body{
 			border-top: 4px solid black;
 			border-left: 4px solid transparent;
 			border-right: 4px solid transparent;
+			@media screen and (max-width: 992px){
+				left: 0px;
+			}
 		}
 		select{
 			-webkit-appearance: none;
@@ -157,6 +160,7 @@ body{
 				text-align: start;
 				font-size: 32px;
 				text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+				margin-left: 12px;
 			}
 			@media screen and (max-width: 576px){
 				font-size: 24px;
