@@ -343,11 +343,6 @@ function deleteFirstDay() {
   }
 }
 
-// render climate information agin
-// function renderDetail() {
-//   $('.future_container').addClass('active');
-// }
-
 // if change county data
 $('#theCountySelect').change(function changeCounty() {
   clientCountyCode = $('#theCountySelect').val();
@@ -360,4 +355,9 @@ $('#theVillageSelect').change(function changeVillage() {
   clientCountyCode = $('#theCountySelect').val();
   VillageValue = $('#theVillageSelect option:selected').text();
   getCwbApi(clientCountyCode, VillageValue);
+});
+
+// when click picture
+$('.picture_container').click(function () {
+  $('.card').toggleClass('active');
 });
