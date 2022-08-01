@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="Vue練習" />
+    <meta property="og:image" content="https://vuejs.org/images/logo.png" />
+    <meta property="og:description" content="第一次的Vue練習" />
+    <meta name="keywords" content="Vue.js" />
+    <meta name="author" content="Charlie Wu" />
+    <link rel="icon" type="image" href="https://vuejs.org/images/logo.png" />
+
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  </head>
+  <body>
+    <!--
+<div id="app">
+  <h1>Vue.js 使用大括號與變數代換</h1>
+  <hr/>
+  <p>我的名字叫做{{name}}，來自{{city}}，<br>最近正在學習如何使用{{learn_thing}}，<br>它其實就像是一個{{vue_text}}。</p>
+  <p>Vue的代換也可以用物件來表示，甚至陣列跟判斷，<br>只要在裡面用 {{notation}} 刮起來就可以了！<br>像是我的技能有：</p>
+  <ul>
+    <li v-for="skill in skills">{{skill}}</li>
+  </ul>
+  <p>踏入網頁開發領域有{{infos.year}}年了，<br>希望可以持續的進步，<br>學到更多東西！</p>
+  <p>另外，除了預設是帶入一般的文字之外，v-html就可以帶入html原始碼！</p>
+  <div v-html="html"></div>
+</div>
+<div id="for">
+  <h1>Vue.js 使用V-for抓出陣列資料</h1>
+  <h3>最簡易的陣列清單 v-for="項目 in 陣列"</h3>
+  <hr/>
+  <ul>
+    <li v-for="item in shoplist1">{{item}}</li>
+  </ul>
+  <h3>陣列清單中放入一個個商品物件，有名字跟價錢</h3>
+  <hr/>
+  <ul>
+    <li v-for="(item, index) in shoplist2">
+      <div class="name">{{index+1}}.{{item.name}}:</div>
+      <div class="price">{{item.price}}</div>
+    </li>
+  </ul>
+  <h3>在商品物件中放生產國家清單，使用第二層v-for</h3>
+  <hr/>
+  <ul>
+    <li v-for="(item, index) in shoplist2">
+      <div>{{index+1}}</div>
+      <div class="name">名稱:</div>
+      <div class="value">{{item.name}}</div><br/>
+      <div class="name">價錢:</div>
+      <div class="value">{{item.price}}</div><br/>
+      <div class="name">產地: </div>
+      <div class="value" v-for="country in item.produce">  {{country}}、 </div>
+    </li>
+  </ul>
+</div> -->
+    <!-- <div id="interact">
+  <h1>Vue.js 使用者互動</h1>
+  <h3>使用v-model="變數名稱" 即時的偵測輸入改變</h3>
+  <hr/>
+  <label>姓名：</label>
+  <input v-model="mydata.name"/>
+  <label>訊息：</label>
+  <input v-model="mydata.message"/>
+  <label>色票：</label>
+  <input v-model="mydata.color"/>
+  <label>Height：</label>
+  <input v-model="mydata.height"/>
+  <div v-for="(book, index) in mydata.books">
+    <label>book {{index+1}}：</label>
+    <input v-model="mydata.books[index]"/>
+  </div>
+  <div class="card">
+    <h5>哈囉，{{mydata.name}}，你輸入了「{{mydata.message}}」</h5>
+    <h5>下面這個方塊顏色是#{{mydata.color}}，高度是{{mydata.height}}px</h5>
+    <div class="block" v-bind:style="{'background-color': '#' + mydata.color, 'height': mydata.height + 'px'}"></div>
+
+    <ul>
+      <li v-for="book in mydata.books">
+        {{book}}
+      </li>
+    </ul>
+  </div>
+</div> -->
+
+    <!-- <div id="books">
+      <h1>使用Vue.js計算呈現資訊/v-if</h1>
+      <h3>
+        實戰博客來排行榜資料轉換html
+        <span>
+          <img
+            class="bkl_icon"
+            src="https://pic.pimg.tw/vemma888/1562164776-3824959015.png"
+            alt=""
+          />
+          <a
+            href="https://www.books.com.tw/web/sys_saletopb/books"
+            target="_blank"
+            >(目標網址)
+          </a>
+        </span>
+      </h3>
+      <label for=""
+        >詳細模式
+        <input type="checkbox" v-model="mode_detail" />
+      </label>
+      <label for=""
+        >優惠價
+        <span v-for="(book, index) in bookdatas">
+          <label for="">{{index+1}}</label>
+          <input type="checkbox" v-model="bookdatas[index].is_discount" />
+        </span>
+      </label>
+      <label for=""
+        >小呈現
+        <input type="radio" v-model="mode_size" value="small" />
+      </label>
+      <label for=""
+        >大呈現
+        <input type="radio" v-model="mode_size" value="big" />
+      </label>
+      <ul class="book_list">
+        <li
+          class="book"
+          :class="[mode_detail ? 'detail' : '', mode_size]"
+          v-for="(book, index) in bookdatas"
+        >
+          <img class="book_img" :src="bookdatas[index].img" alt="" />
+          <div class="infos">
+            <h2 class="name">
+              <a
+                :href="bookdatas[index].link_book"
+                target="_blank"
+                v-if="!mode_detail"
+              >
+                {{bookdatas[index].zh_name.substring(0,18)}}
+              </a>
+            </h2>
+            <h2 class="name">
+              <a
+                :href="bookdatas[index].link_book"
+                target="_blank"
+                v-if="mode_detail"
+              >
+                {{bookdatas[index].zh_name}}
+              </a>
+            </h2>
+            <h4 class="publish" v-if="mode_detail">
+              出版社：
+              <a :href="bookdatas[index].publish_house" target="_blank"
+                >{{bookdatas[index].publish_house}}</a
+              >
+            </h4>
+            <h4 class="author">
+              作者：
+              <a :href="bookdatas[index].link_author" target="_blank"
+                >{{bookdatas[index].zh_author}}</a
+              >
+            </h4>
+            <h4 class="bookPrice" v-if="!bookdatas[index].is_discount">
+              價錢：
+              <span class="red"> {{parseInt(bookdatas[index].price)}} </span>
+              <span>元</span>
+            </h4>
+            <h4 class="bookPrice" v-if="bookdatas[index].is_discount">
+              優惠價：
+              <span class="red">{{bookdatas[index].discount*100}}</span>
+              <span>折</span>
+              <span class="red">
+                {{parseInt(bookdatas[index].price * bookdatas[index].discount)}}
+              </span>
+              <span>元</span>
+            </h4>
+            <h4 class="date">
+              出版日期：
+              <a :href="bookdatas[index].date" target="_blank"
+                >{{bookdatas[index].date}}</a
+              >
+            </h4>
+          </div>
+        </li>
+      </ul>
+    </div> -->
+    <div id="fruit">
+      <h1>使用v-on呼叫/ method寫function 建立js事件</h1>
+      <button v-on:click="add('pen')" class="addbtn">加筆(pen)</button>
+      <button v-on:click="add('apple')" class="addbtn">加蘋果(apple)</button>
+      <button v-on:click="add('pineapple')" class="addbtn">
+        加鳳梨(pineapple)
+      </button>
+      <br />
+      <h5>狀態：{{status}}</h5>
+      <h5>
+        列表共有{{fruits.length}}項資料，共有{{totals.pen}}隻筆、{{totals.apple}}顆蘋果、{{totals.pineapple}}顆鳳梨
+      </h5>
+      <div class="fruit" v-for="(fruit, index) in fruits" track-by="$index">
+        <div class="name">{{index + 1}}.{{fruit}}</div>
+        <img
+          v-if="fruit == 'pen'"
+          id="penIcon"
+          src="https://cdn-icons-png.flaticon.com/512/16/16310.png"
+          alt=""
+        />
+        <img
+          v-if="fruit == 'apple'"
+          id="appleIcon"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/1667px-Apple_logo_black.svg.png"
+          alt=""
+        />
+        <img
+          v-if="fruit == 'pineapple'"
+          id="pineappleIcon"
+          src="https://cdn-icons-png.flaticon.com/512/3367/3367222.png"
+          alt=""
+        />
+        <button v-on:click="remove(index, fruit)">X</button>
+      </div>
+    </div>
+    <script src="./assets/javascript/script.js"></script>
+  </body>
+</html>
