@@ -93,8 +93,18 @@ var vm = new Vue({
       },
       {
         urlId: 2,
-        description: '龍貓',
+        description: '龍貓(hahow)',
         url: 'https://awiclass.monoame.com/api/command.php?type=get&name=music_dodoro',
+      },
+      {
+        urlId: 3,
+        description: '龍貓(github)',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/dodoro.json',
+      },
+      {
+        urlId: 4,
+        description: '錄音一',
+        url: '',
       },
     ],
   },
@@ -104,12 +114,18 @@ var vm = new Vue({
 
       this.url_database[urlId].url;
       var vobj = this;
-      $.ajax({
-        url: this.url_database[urlId].url,
-        success: function (res) {
-          vobj.notes = JSON.parse(res);
-        },
-      });
+      if (urlId >= 4) {
+        vobj.notes = this.recorder_notes;
+        console.log(urlId, vobj.notes);
+      } else {
+        $.ajax({
+          url: this.url_database[urlId].url,
+          success: function (res) {
+            console.log(res);
+            vobj.notes = res;
+          },
+        });
+      }
     },
     playNote: function (id, volume) {
       if (id > 0) {
