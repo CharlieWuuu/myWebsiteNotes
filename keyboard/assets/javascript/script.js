@@ -89,7 +89,7 @@ var vm = new Vue({
       {
         urlId: 1,
         description: '命運交響曲',
-        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/Fate.js',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/Fate.json',
       },
       {
         urlId: 2,
