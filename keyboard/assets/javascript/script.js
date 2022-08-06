@@ -246,7 +246,7 @@ var vm = new Vue({
       var notesAmount = vobj.notes.length - 1;
       this.player = setInterval(function () {
         vobj.playing_time++;
-        if (vobj.playing_time == vobj.notes[vobj.now_note_id].time) {
+        if (vobj.playing_time >= vobj.notes[vobj.now_note_id].time) {
           vobj.now_note_id++;
         }
         if (vobj.playing_time >= vobj.notes[notesAmount].time) {
@@ -260,6 +260,7 @@ var vm = new Vue({
       this.situation = '';
       var numStandard = this.notes[this.now_note_id].num;
       var timeStandard = this.notes[this.now_note_id].time;
+
       if (this.is_challenging == 1) {
         if (
           numStandard == id &&

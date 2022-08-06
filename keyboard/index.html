@@ -54,7 +54,7 @@
               v-on:click="clickNote(s.num)"
               :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
             >
-              <div class="label">{{String.fromCharCode(s.key)}}</div>
+              <div class="label">{{String.fromCharCode(s.key)}}{{s.num}}</div>
             </div>
             <div
               class="black"
@@ -62,7 +62,7 @@
               v-on:click="clickNote(s.num)"
               :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
             >
-              <div class="label">{{String.fromCharCode(s.key)}}</div>
+              <div class="label">{{String.fromCharCode(s.key)}}{{s.num}}</div>
             </div>
           </div>
         </div>
