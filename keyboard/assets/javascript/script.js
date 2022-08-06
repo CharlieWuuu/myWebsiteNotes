@@ -93,12 +93,12 @@ var vm = new Vue({
       },
       {
         urlId: 2,
-        description: '龍貓(hahow)',
-        url: 'https://awiclass.monoame.com/api/command.php?type=get&name=music_dodoro',
+        description: '小步舞曲',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/minuet.json',
       },
       {
         urlId: 3,
-        description: '龍貓(github)',
+        description: '龍貓',
         url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/dodoro.json',
       },
       {
