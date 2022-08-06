@@ -1,0 +1,219 @@
+$key_width: 44px;
+$key_height: 300px;
+
+$color_white: #eee;
+$color_black: #585858;
+$key_width: 44px;
+$key_height: 300px;
+
+@mixin size($w, $h){
+	width: $w;
+	height: $h;
+}
+
+%flex-center{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+*{
+	font-family: 微軟正黑體;
+}
+
+html, body{
+	@include size(100%, 100%);
+	margin: 0;
+	padding: 0;
+	@extend %flex-center;
+}
+
+h2{
+	margin-bottom: 30px;
+}
+
+button{
+	background-color: transparent;
+	border: none;
+	border: solid 1px;
+	padding: 4px 12px;
+	border-radius: 4px;
+	transition: .5s;
+	cursor: pointer;
+	&:hover{
+		background-color: $color_black;
+		color: white;
+	}
+	.fa-circle{
+		color: darkred;
+	}
+}
+
+.notes_list{
+	@extend %flex-center;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+	width: 720px;
+	padding: 0;
+	li{
+		display: inline-block;
+		border-left: solid 1px;
+		border-right: solid 1px;
+		min-width: 79px;
+		padding: 2px 5px;
+		margin: 4px 0 4px -1px;
+		cursor: pointer;
+		transition: .3s;
+		&:hover{
+			background-color: darken($color_white, 5);
+		}
+
+		&.playing{
+			background-color: darken($color_white, 10);
+		}
+		.time{
+			font-size: 8px;
+			opacity: 0.3;
+		}
+		.num{
+			font-size: 16px;
+
+		}
+	}
+}
+
+.upper_box{
+	@extend %flex-center;
+	.path_container{
+		@extend %flex-center;
+		.path{
+			position: relative;
+			height: 70px;
+			.white_path{
+				@include size($key_width, $key_height);
+				border: solid 1px $color_white;
+				background-color: gray;
+				.white_square{
+					position: absolute;
+					top: 0;
+					opacity: 0;
+					width: 100%;
+					height: 10px;
+					background-color: white;
+
+					&.show{
+						opacity: 1;
+						background-color: blue;
+						animation: squareDown 2s linear forwards;
+					}
+				}
+			}
+			.black_path{
+				position: absolute;
+				top: 0px;
+
+				@include size($key_width/2, $key_height*0.55);
+				margin-left: -$key_width/4;
+				margin-right: -$key_width/4;
+				z-index: 20;
+				.black_square{
+					position: absolute;
+					top: 0;
+					opacity: 0;
+					width: 100%;
+					height: 10px;
+					background-color: white;
+					&.show{
+						opacity: 1;
+						background-color: red;
+						animation: squareDown 2s linear forwards;
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes squareDown {
+	0%{transform: translateY(0%)}
+	100%{transform: translateY(120px)}
+}
+
+.center_box{
+	@extend %flex-center;
+	flex-direction: column;
+	.keyboard{
+		position: relative;
+		@extend %flex-center;
+		align-items: flex-start;
+		box-shadow: 0px 0px 40px -5px rgba(0,0,0,0.4);
+		margin: 40px;
+
+		.piano_key{
+			cursor: pointer;
+			.white{
+				@extend %flex-center;
+				align-items: flex-end;
+				@include size($key_width, $key_height);
+				border: solid 1px $color_white;
+				background-color: white;
+				transition: .1s;
+				&:hover{
+					background-color: $color_white;
+				}
+				&.playing{
+					background-color: darken($color_white, 10);
+					transform: translate(0px, 0px,)
+				}
+				// &.active{
+				// 	&:after,&:before{
+				// 		opacity: 1;
+				// 	}
+				// }
+				// &:after,&:before{
+				// 	content: '';
+				// 	width: 10px;
+				// 	height: 10px;
+				// 	opacity: 1;
+				// 	transition: 1s;
+				// }
+				// &:after{
+				// 	background-color: orange;
+				// }
+				// &:before{
+				// 	background-color: darkblue;
+				// }
+			}
+			.black{
+				@extend %flex-center;
+				align-items: flex-end;
+				position: absolute;
+				top: 0px;
+				@include size($key_width/2, $key_height*0.55);
+				background-color: $color_black;
+				margin-left: -$key_width/4;
+				margin-right: -$key_width/4;
+				z-index: 20;
+				transition: .1s;
+				&:hover{
+					background-color: darken($color_black, 10);
+				}
+				&.playing{
+					background-color: lighten($color_black, 10);
+					transform: translate(0px, 0px);
+				}
+			}
+			.label{
+				color: rgba($color_black, 0.5);
+				transform: translateY(20px);
+				font-size: 8px;
+			}
+
+		}
+	}
+	.controls{
+		@extend %flex-center;
+		margin: 20px;
+		gap: 20px;
+	}
+}

@@ -1,0 +1,178 @@
+@charset "UTF-8";
+.center_box .controls, .center_box .keyboard .piano_key .black, .center_box .keyboard .piano_key .white, .center_box .keyboard, .center_box, .upper_box .path_container, .upper_box, .notes_list, html, body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  font-family: 微軟正黑體;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h2 {
+  margin-bottom: 30px;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  border: solid 1px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #585858;
+  color: white;
+}
+button .fa-circle {
+  color: darkred;
+}
+
+.notes_list {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 720px;
+  padding: 0;
+}
+.notes_list li {
+  display: inline-block;
+  border-left: solid 1px;
+  border-right: solid 1px;
+  min-width: 79px;
+  padding: 2px 5px;
+  margin: 4px 0 4px -1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.notes_list li:hover {
+  background-color: #e1e1e1;
+}
+.notes_list li.playing {
+  background-color: #d5d5d5;
+}
+.notes_list li .time {
+  font-size: 8px;
+  opacity: 0.3;
+}
+.notes_list li .num {
+  font-size: 16px;
+}
+
+.upper_box .path_container .path {
+  position: relative;
+  height: 70px;
+}
+.upper_box .path_container .path .white_path {
+  width: 44px;
+  height: 300px;
+  border: solid 1px #eee;
+  background-color: gray;
+}
+.upper_box .path_container .path .white_path .white_square {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 10px;
+  background-color: white;
+}
+.upper_box .path_container .path .white_path .white_square.show {
+  opacity: 1;
+  background-color: blue;
+  animation: squareDown 2s linear forwards;
+}
+.upper_box .path_container .path .black_path {
+  position: absolute;
+  top: 0px;
+  width: 22px;
+  height: 165px;
+  margin-left: -11px;
+  margin-right: -11px;
+  z-index: 20;
+}
+.upper_box .path_container .path .black_path .black_square {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 10px;
+  background-color: white;
+}
+.upper_box .path_container .path .black_path .black_square.show {
+  opacity: 1;
+  background-color: red;
+  animation: squareDown 2s linear forwards;
+}
+
+@keyframes squareDown {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(120px);
+  }
+}
+.center_box {
+  flex-direction: column;
+}
+.center_box .keyboard {
+  position: relative;
+  align-items: flex-start;
+  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
+  margin: 40px;
+}
+.center_box .keyboard .piano_key {
+  cursor: pointer;
+}
+.center_box .keyboard .piano_key .white {
+  align-items: flex-end;
+  width: 44px;
+  height: 300px;
+  border: solid 1px #eee;
+  background-color: white;
+  transition: 0.1s;
+}
+.center_box .keyboard .piano_key .white:hover {
+  background-color: #eee;
+}
+.center_box .keyboard .piano_key .white.playing {
+  background-color: #d5d5d5;
+  transform: translate(0px, 0px);
+}
+.center_box .keyboard .piano_key .black {
+  align-items: flex-end;
+  position: absolute;
+  top: 0px;
+  width: 22px;
+  height: 165px;
+  background-color: #585858;
+  margin-left: -11px;
+  margin-right: -11px;
+  z-index: 20;
+  transition: 0.1s;
+}
+.center_box .keyboard .piano_key .black:hover {
+  background-color: #3f3f3f;
+}
+.center_box .keyboard .piano_key .black.playing {
+  background-color: #727272;
+  transform: translate(0px, 0px);
+}
+.center_box .keyboard .piano_key .label {
+  color: rgba(88, 88, 88, 0.5);
+  transform: translateY(20px);
+  font-size: 8px;
+}
+.center_box .controls {
+  margin: 20px;
+  gap: 20px;
+}/*# sourceMappingURL=style.css.map */

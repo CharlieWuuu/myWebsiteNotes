@@ -185,7 +185,7 @@
         </li>
       </ul>
     </div> -->
-    <div id="fruit">
+    <!-- <div id="fruit">
       <h1>使用v-on呼叫/ method寫function 建立js事件</h1>
       <button v-on:click="add('pen')" class="addbtn">加筆(pen)</button>
       <button v-on:click="add('apple')" class="addbtn">加蘋果(apple)</button>
@@ -218,6 +218,42 @@
           alt=""
         />
         <button v-on:click="remove(index, fruit)">X</button>
+      </div>
+    </div> -->
+    <div>
+      <h1>使用JQuery Ajax與Vue.js配合</h1>
+      <hr />
+      <div id="app1">
+        <h2>1. 使用Ajax載入純文字</h2>
+        <h3>{{notifyData}}</h3>
+      </div>
+      <hr />
+      <div id="app2">
+        <h2>2. 使用Ajax載入商品清單（JSON Array）</h2>
+        <h5 v-if="items.length == 0">載入中......</h5>
+        <ul class="items">
+          <li v-for="item in items">
+            <div class="name">{{item.name}}</div>
+            <div class="price">：{{item.price}}</div>
+          </li>
+        </ul>
+      </div>
+      <div id="app3">
+        <h2>3. 實戰載入 Hahow 的API資料（JSON）</h2>
+        <h5 v-if="hahows.length == 0">載入中......</h5>
+        <ul class="hahows">
+          <li v-for="hahow in hahows">
+            <img :src="hahow.coverImage.url" alt="" />
+            <div class="hahowInfo">
+              <h4>{{hahow.title}} {{hahow.price}}</h4>
+              <h5>老師：{{hahow.owner.name}}</h5>
+              <h5>
+                募資狀態：{{hahow.numSoldTickets}}/{{hahow.successCriteria.numSoldTickets}}
+              </h5>
+              <p>{{hahow.metaDescription}}</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     <script src="./assets/javascript/script.js"></script>

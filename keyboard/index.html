@@ -5,14 +5,113 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>互動鋼琴</title>
+    <link rel="icon" type="image" href="https://vuejs.org/images/logo.png" />
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c50ac87e11.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <audio controls src="">
-      <source src="" type="" />
-    </audio>
+    <div id="app">
+      <div class="audioplayer" v-for="s in soundData">
+        <audio :data-num="s.number" preload="auto">
+          <source :src="s.url" />
+        </audio>
+      </div>
+      <div class="upper_box">
+        <div class="path_container">
+          <div class="path" v-for="s in display_keys">
+            <div class="white_path" v-if="s.type == 'white'">
+              <div
+                class="white_square"
+                v-for="note in notes"
+                v-if="note.num == s.num"
+                :id="note.time"
+                :class="showNote(note.time) ? 'show': ''"
+              ></div>
+            </div>
+            <div class="black_path" v-if="s.type == 'black'">
+              <div
+                class="black_square"
+                v-for="note in notes"
+                v-if="note.num == s.num"
+                :id="note.time"
+                :class="showNote(note.time) ? 'show': ''"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="center_box">
+        <div class="keyboard">
+          <div class="piano_key" v-for="s in display_keys">
+            <div
+              class="white"
+              v-if="s.type == 'white'"
+              v-on:click="clickNote(s.num)"
+              :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
+            >
+              <div class="label">{{String.fromCharCode(s.key)}}</div>
+            </div>
+            <div
+              class="black"
+              v-if="s.type == 'black'"
+              v-on:click="clickNote(s.num)"
+              :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
+            >
+              <div class="label">{{String.fromCharCode(s.key)}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- <ul class="notes_list" v-if="notes.length>0">
+          <li
+            v-for="(note, index) in notes"
+            :class="now_note_id-1==index?'playing':''"
+          >
+            <div class="num">{{note.num}}</div>
+            <div class="time">
+              第{{Math.ceil(note.time / 400)}}小節 第{{Math.ceil((note.time /
+              400 - (Math.ceil(note.time / 400) - 1))*4)}}拍
+            </div>
+          </li>
+        </ul> -->
+        <div class="controls">
+          <!-- <button v-on:click="load_sample">播放範例</button> -->
+          <!-- <button v-on:click="playNext(1)">依序播放</button> -->
+          <button v-on:click="startPlay(1)">
+            開始播放
+            <i class="fa fa-play"></i>
+          </button>
+          <!-- <button v-on:click="stopRecord">
+            暫停播放
+            <i class="fa-solid fa-pause"></i>
+          </button> -->
+          <button v-on:click="stopPlay">
+            停止播放
+            <i class="fa-solid fa-square"></i>
+          </button>
+          <button v-on:click="challenge()">開始挑戰</button>
+          <!-- <button v-on:click="stopRecord">更換曲子</button> -->
+          <button v-on:click="startRecord(1)">
+            開始錄音
+            <i class="fa-solid fa-circle"></i>
+          </button>
+          <button v-on:click="stopRecord">停止錄音</button>
+          <button v-on:click="playRecord">
+            播放錄音
+            <i class="fa fa-play"></i>
+          </button>
+          <button v-on:click="notes=[]">清除錄音</button>
+        </div>
+        <h4>
+          播放時間：{{playing_time}}　分數：{{score}}/{{(notes.length-1)*100}}　成果：{{result}}　錄音時間：{{record_time}}
+        </h4>
+      </div>
+    </div>
+    <script src="./assets/javascript/script.js"></script>
   </body>
 </html>
 

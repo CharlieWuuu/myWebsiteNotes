@@ -208,3 +208,57 @@ var vf = new Vue({
     },
   },
 });
+
+var apiUrl = {
+  notifyData:
+    'https://awiclass.monoame.com/api/command.php?type=get&name=notifydata',
+  itemData:
+    'https://awiclass.monoame.com/api/command.php?type=get&name=itemdata',
+  hahowData:
+    'https://awiclass.monoame.com/api/command.php?type=get&name=hahowdata',
+};
+
+var vml = new Vue({
+  el: '#app1',
+  data: {
+    notifyData: '載入中......',
+  },
+  mounted: function () {
+    $.ajax({
+      url: apiUrl.notifyData,
+      success: function (res) {
+        vml.notifyData = res;
+      },
+    });
+  },
+});
+
+var vm2 = new Vue({
+  el: '#app2',
+  data: {
+    items: '',
+  },
+  mounted: function () {
+    $.ajax({
+      url: apiUrl.itemData,
+      success: function (res) {
+        vm2.items = JSON.parse(res);
+      },
+    });
+  },
+});
+
+var vm3 = new Vue({
+  el: '#app3',
+  data: {
+    hahows: '載入中......',
+  },
+  mounted: function () {
+    $.ajax({
+      url: apiUrl.hahowData,
+      success: function (res) {
+        vm3.hahows = JSON.parse(res);
+      },
+    });
+  },
+});

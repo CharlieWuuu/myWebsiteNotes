@@ -133,4 +133,36 @@ button {
 button:hover {
   background-color: gray;
   color: white;
+}
+
+ul.items li {
+  list-style: none;
+  padding: 5px;
+  border: none;
+  border-bottom: solid 1px #bbb;
+  width: 300px;
+}
+ul.items .name {
+  width: 100px;
+}
+
+.hahows li {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  border-bottom: 1px solid #bbb;
+}
+.hahows li img {
+  width: 200px;
+}
+.hahows li .hahowInfo {
+  flex: 1;
+  margin: 0 10px;
+  padding: 5px;
+}
+.hahows li .hahowInfo h4, .hahows li .hahowInfo h5 {
+  padding: 0;
+  margin: 0;
 }/*# sourceMappingURL=style.css.map */
