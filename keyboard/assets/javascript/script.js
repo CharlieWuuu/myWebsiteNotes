@@ -17,15 +17,17 @@ var vm = new Vue({
   data: {
     soundData: soundPack,
     notes: [
-      { num: 5, time: 0 },
-      { num: 5, time: 50 },
-      { num: 5, time: 100 },
-      { num: 2.5, time: 150 },
-      { num: 4, time: 600 },
-      { num: 4, time: 650 },
-      { num: 4, time: 700 },
-      { num: 2, time: 750 },
-      { num: 0, time: 1000 },
+      { num: 1, time: 0 },
+      { num: 1, time: 100 },
+      { num: 2, time: 150 },
+      { num: 3, time: 200 },
+      { num: 3, time: 300 },
+      { num: 2, time: 400 },
+      { num: 1, time: 450 },
+      { num: 2, time: 500 },
+      { num: 3, time: 550 },
+      { num: 1, time: 600 },
+      { num: 0, time: 800 },
     ],
     challenger: [],
     recorder_notes: [],
@@ -43,6 +45,8 @@ var vm = new Vue({
     is_playing: 0,
     is_challenging: 0,
     is_recording: 0,
+
+    now_music: '蝴蝶',
 
     score: 0,
     result: '快來挑戰!',
@@ -75,12 +79,33 @@ var vm = new Vue({
       { num: 14, key: 85, type: 'white' },
       { num: 15, key: 73, type: 'white' },
     ],
+
+    url_database: [
+      {
+        urlId: 0,
+        description: '蝴蝶',
+        url: '',
+      },
+      {
+        urlId: 1,
+        description: '命運交響曲',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/Fate.js',
+      },
+      {
+        urlId: 2,
+        description: '龍貓',
+        url: 'https://awiclass.monoame.com/api/command.php?type=get&name=music_dodoro',
+      },
+    ],
   },
   methods: {
-    load_sample: function () {
+    load_sample: function (e) {
+      urlId = e.target.value;
+
+      this.url_database[urlId].url;
       var vobj = this;
       $.ajax({
-        url: 'https://awiclass.monoame.com/api/command.php?type=get&name=music_dodoro',
+        url: this.url_database[urlId].url,
         success: function (res) {
           vobj.notes = JSON.parse(res);
         },

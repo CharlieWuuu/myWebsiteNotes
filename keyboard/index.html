@@ -94,7 +94,11 @@
             <i class="fa-solid fa-square"></i>
           </button>
           <button v-on:click="challenge()">開始挑戰</button>
-          <!-- <button v-on:click="stopRecord">更換曲子</button> -->
+          <select v-on:change="load_sample">
+            <option v-for="music in url_database" :value="music.urlId">
+              {{music.urlId}}.{{music.description}}
+            </option>
+          </select>
           <button v-on:click="startRecord(1)">
             開始錄音
             <i class="fa-solid fa-circle"></i>
@@ -107,7 +111,8 @@
           <button v-on:click="notes=[]">清除錄音</button>
         </div>
         <h4>
-          播放時間：{{playing_time}}　分數：{{score}}/{{(notes.length-1)*100}}　成果：{{result}}　錄音時間：{{record_time}}
+          播放時間：{{playing_time}}　分數：{{score}}/{{(notes.length-1)*100}}　成果：{{result}}
+          <br />　 錄音時間：{{record_time}}　現在曲子：{{now_music}}
         </h4>
       </div>
     </div>
