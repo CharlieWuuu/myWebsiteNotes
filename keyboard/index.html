@@ -146,7 +146,7 @@
           <h4>
             <span
               v-if="now_music !== '我的錄音' || (now_music == '我的錄音' && is_recording == 0 && recorder_notes.length > 1)"
-              >分數：{{score}} / {{(notes.length - 1) * 100}}
+              >分數：{{score}} / {{notes.length * 100}}
             </span>
             <span>，{{result}}</span>
           </h4>

@@ -18,144 +18,36 @@ var vm = new Vue({
     soundData: soundPack,
     notes: [
       {
-        num: 10,
+        num: 1,
         time: 0,
       },
       {
-        num: 9.5,
-        time: 75,
+        num: 2,
+        time: 100,
       },
       {
-        num: 10,
-        time: 150,
+        num: 3,
+        time: 200,
       },
       {
-        num: 9.5,
-        time: 225,
-      },
-      {
-        num: 10,
+        num: 4,
         time: 300,
       },
       {
-        num: 7,
-        time: 375,
-      },
-      {
-        num: 9,
-        time: 450,
-      },
-      {
-        num: 8,
-        time: 525,
+        num: 5,
+        time: 400,
       },
       {
         num: 6,
+        time: 500,
+      },
+      {
+        num: 7,
         time: 600,
       },
       {
-        num: 1,
-        time: 825,
-      },
-      {
-        num: 3,
-        time: 900,
-      },
-      {
-        num: 6,
-        time: 975,
-      },
-      {
-        num: 7,
-        time: 1050,
-      },
-      {
-        num: 3,
-        time: 1275,
-      },
-      {
-        num: 5.5,
-        time: 1350,
-      },
-      {
-        num: 7,
-        time: 1425,
-      },
-      {
         num: 8,
-        time: 1500,
-      },
-      {
-        num: 3,
-        time: 1725,
-      },
-      {
-        num: 10,
-        time: 1800,
-      },
-      {
-        num: 9.5,
-        time: 1875,
-      },
-      {
-        num: 10,
-        time: 1950,
-      },
-      {
-        num: 9.5,
-        time: 2025,
-      },
-      {
-        num: 10,
-        time: 2100,
-      },
-      {
-        num: 7,
-        time: 2175,
-      },
-      {
-        num: 9,
-        time: 2250,
-      },
-      {
-        num: 8,
-        time: 2325,
-      },
-      {
-        num: 6,
-        time: 2400,
-      },
-      {
-        num: 1,
-        time: 2625,
-      },
-      {
-        num: 3,
-        time: 2700,
-      },
-      {
-        num: 6,
-        time: 2775,
-      },
-      {
-        num: 7,
-        time: 2850,
-      },
-      {
-        num: 3,
-        time: 3075,
-      },
-      {
-        num: 8,
-        time: 3150,
-      },
-      {
-        num: 7,
-        time: 3225,
-      },
-      {
-        num: 6,
-        time: 3300,
+        time: 700,
       },
     ],
     challenger: [],
@@ -391,7 +283,7 @@ var vm = new Vue({
     },
 
     showResult: function () {
-      var fullScore = (this.notes.length - 1) * 100;
+      var fullScore = this.notes.length * 100;
       if (this.score >= fullScore * 0.8) this.result = '達人！';
       if (fullScore * 0.8 > this.score && this.score >= fullScore * 0.5)
         this.result = '很棒！';
@@ -403,7 +295,10 @@ var vm = new Vue({
     },
 
     showNote: function (time) {
-      if (this.is_playing == 1 && this.playing_time + 400 > time) {
+      if (
+        (this.is_playing == 1 || this.is_challenging == 1) &&
+        this.playing_time + 400 > time
+      ) {
         return true;
       }
     },
