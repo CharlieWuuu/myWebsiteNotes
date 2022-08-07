@@ -54,7 +54,7 @@
               v-on:click="clickNote(s.num)"
               :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
             >
-              <div class="label">{{String.fromCharCode(s.key)}}{{s.num}}</div>
+              <div class="label">{{String.fromCharCode(s.key)}}</div>
             </div>
             <div
               class="black"
@@ -62,7 +62,7 @@
               v-on:click="clickNote(s.num)"
               :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
             >
-              <div class="label">{{String.fromCharCode(s.key)}}{{s.num}}</div>
+              <div class="label">{{String.fromCharCode(s.key)}}</div>
             </div>
           </div>
         </div>
@@ -79,41 +79,91 @@
           </li>
         </ul> -->
         <div class="controls">
-          <!-- <button v-on:click="load_sample">播放範例</button> -->
-          <!-- <button v-on:click="playNext(1)">依序播放</button> -->
-          <button v-on:click="startPlay(1)">
-            開始播放
+          <select
+            :class="is_playing == 1 || is_challenging == 1 || is_recording == 1 ? 'opacity' : ''"
+            :disabled="is_playing == 1 || is_recording == 1"
+            v-on:change="load_sample"
+          >
+            <option value="" disabled selected>選擇曲目</option>
+            <option v-for="music in url_database" :value="music.urlId">
+              {{music.urlId + 1}}.{{music.description}}
+            </option>
+          </select>
+          <button
+            :class="is_challenging == 1 || is_recording == 1 ? 'opacity' : ''"
+            v-if="now_music !== '我的錄音' && is_playing == 0"
+            v-on:click="is_challenging == 1 || is_recording == 1 ? '' : startPlay(1)"
+          >
+            播放範例
             <i class="fa fa-play"></i>
           </button>
-          <!-- <button v-on:click="stopRecord">
-            暫停播放
-            <i class="fa-solid fa-pause"></i>
-          </button> -->
-          <button v-on:click="stopPlay">
+          <button
+            v-if="now_music !== '我的錄音' && is_playing==1"
+            v-on:click="stopPlay"
+          >
             停止播放
             <i class="fa-solid fa-square"></i>
           </button>
-          <button v-on:click="challenge()">開始挑戰</button>
-          <select v-on:change="load_sample">
-            <option v-for="music in url_database" :value="music.urlId">
-              {{music.urlId}}.{{music.description}}
-            </option>
-          </select>
-          <button v-on:click="startRecord(1)">
+
+          <button
+            :class="is_playing == 1 || is_challenging == 1 ? 'opacity' : ''"
+            v-if="now_music == '我的錄音' && is_recording==0 && recorder_notes.length <= 1"
+            v-on:click="is_playing == 1 || is_challenging == 1 ? 'opacity' : startRecord(1)"
+          >
             開始錄音
             <i class="fa-solid fa-circle"></i>
           </button>
-          <button v-on:click="stopRecord">停止錄音</button>
-          <button v-on:click="playRecord">
+          <button
+            v-if="now_music == '我的錄音' && is_recording == 1"
+            v-on:click="stopRecord"
+          >
+            停止錄音
+          </button>
+          <button
+            v-if="now_music == '我的錄音' && is_recording== 0 && recorder_notes.length > 1 && is_playing == 0"
+            v-on:click="startPlay"
+          >
             播放錄音
             <i class="fa fa-play"></i>
           </button>
-          <button v-on:click="notes=[]">清除錄音</button>
+          <button
+            v-if="now_music == '我的錄音' && is_recording== 0 && recorder_notes.length > 1 && is_playing == 1"
+            v-on:click="stopPlay"
+          >
+            停放錄音
+            <i class="fa fa-play"></i>
+          </button>
+          <button
+            v-if="now_music == '我的錄音' && recorder_notes.length > 1 && is_recording == 0"
+            :class="recorder_notes.length > 1 ? '' : 'opacity'"
+            v-on:click="recorder_notes.length > 1 ? recorder_notes=[] : ''"
+          >
+            清除錄音
+          </button>
+
+          <button
+            :class="is_playing == 1 || is_recording == 1 || (now_music == '我的錄音' && recorder_notes.length <= 1) ? 'opacity' : ''"
+            v-if="is_challenging == 0"
+            v-on:click="is_playing == 1 || is_recording == 1 || (now_music == '我的錄音' && recorder_notes.length <= 1) ? '' : challenge()"
+          >
+            開始挑戰
+          </button>
+          <button v-if="is_challenging == 1" v-on:click="stopPlay">
+            停止挑戰
+            <i class="fa-solid fa-square"></i>
+          </button>
+
+          <h4>
+            <!-- <span>播放時間：{{playing_time}}</span> -->
+            <span
+              v-if="now_music !== '我的錄音' || (now_music == '我的錄音' && is_recording == 0 && recorder_notes.length > 1)"
+              >分數：{{score}} / {{(notes.length - 1) * 100}}
+            </span>
+            <span>，{{result}}</span>
+            <!-- <span>錄音時間：{{record_time}}</span> -->
+            <!-- <span>現在曲目：{{now_music}}</span> -->
+          </h4>
         </div>
-        <h4>
-          播放時間：{{playing_time}}　分數：{{score}}/{{(notes.length-1)*100}}　成果：{{result}}
-          <br />　 錄音時間：{{record_time}}　現在曲子：{{now_music}}
-        </h4>
       </div>
     </div>
     <script src="./assets/javascript/script.js"></script>

@@ -103,7 +103,7 @@ var vm = new Vue({
       },
       {
         urlId: 4,
-        description: '錄音一',
+        description: '我的錄音',
         url: '',
       },
     ],
@@ -111,12 +111,12 @@ var vm = new Vue({
   methods: {
     load_sample: function (e) {
       urlId = e.target.value;
-
+      console.log(urlId);
+      this.now_music = this.url_database[urlId].description;
       this.url_database[urlId].url;
       var vobj = this;
       if (urlId >= 4) {
         vobj.notes = this.recorder_notes;
-        console.log(urlId, vobj.notes);
       } else {
         $.ajax({
           url: this.url_database[urlId].url,
@@ -166,17 +166,17 @@ var vm = new Vue({
       clearInterval(this.recorder);
       this.record_time = 0;
       this.is_recording = 0;
+      this.notes = this.recorder_notes;
     },
 
     playRecord: function () {
-      console.log(this.recorder_notes);
+      this.is_playing = 1;
       this.now_note_id = 0;
       this.playing_time = -400;
       this.next_note_id = 0;
       var vobj = this;
       this.player = setInterval(function () {
         vobj.playing_time++;
-        console.log(vobj.recorder_notes[vobj.next_note_id].time);
         if (vobj.playing_time >= vobj.recorder_notes[vobj.next_note_id].time) {
           var play_note = vobj.recorder_notes[vobj.now_note_id].num;
           vobj.playNote(play_note, 1);
@@ -194,6 +194,7 @@ var vm = new Vue({
       this.now_note_id = 0;
       this.playing_time = -400;
       this.next_note_id = 0;
+      console.log(this.notes);
       var vobj = this;
       this.player = setInterval(function () {
         vobj.playing_time++;
@@ -223,17 +224,18 @@ var vm = new Vue({
         num == id &&
         this.playing_time > 0 &&
         this.is_playing == 1 &&
-        this.is_challenging == 0 &&
-        this.recorder_notes.length == 0
+        this.is_challenging == 0
       )
         return true;
-      if (
-        this.recorder_notes.length > 0 &&
-        this.recorder_notes[cur_id].num == id
-      ) {
-        this.notes = this.recorder_notes;
-        return true;
-      }
+      // if (
+      //   this.playing_time > 0 &&
+      //   this.is_playing == 1 &&
+      //   this.recorder_notes.length > 0 &&
+      //   this.recorder_notes[cur_id].num == id
+      // ) {
+      //   this.notes = this.recorder_notes;
+      //   return true;
+      // }
       return false;
     },
 

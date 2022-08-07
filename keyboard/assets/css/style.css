@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.center_box .controls, .center_box .keyboard .piano_key .black, .center_box .keyboard .piano_key .white, .center_box .keyboard, .center_box, .upper_box .path_container, .upper_box, .notes_list, html, body {
+.center_box .controls, .center_box .keyboard .piano_key .black, .center_box .keyboard .piano_key .white, .center_box .keyboard, .center_box, .upper_box .path_container, .upper_box, html, body, .notes_list {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,18 +9,11 @@
   font-family: 微軟正黑體;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
 h2 {
   margin-bottom: 30px;
 }
 
-button {
+button, select {
   background-color: transparent;
   border: none;
   border: solid 1px;
@@ -29,12 +22,20 @@ button {
   transition: 0.5s;
   cursor: pointer;
 }
-button:hover {
+button:hover, select:hover {
   background-color: #585858;
   color: white;
 }
-button .fa-circle {
+button .fa-circle, select .fa-circle {
   color: darkred;
+}
+button.opacity, select.opacity {
+  cursor: default;
+  opacity: 0.5;
+}
+button.opacity:hover, select.opacity:hover {
+  background-color: initial;
+  color: initial;
 }
 
 .notes_list {
@@ -67,50 +68,67 @@ button .fa-circle {
   font-size: 16px;
 }
 
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
 .upper_box .path_container .path {
   position: relative;
-  height: 70px;
+  height: 200px;
+}
+@media screen and (max-width: 767px) {
+  .upper_box .path_container .path {
+    height: 100px;
+  }
 }
 .upper_box .path_container .path .white_path {
   width: 44px;
-  height: 300px;
+  height: 100%;
   border: solid 1px #eee;
   background-color: gray;
 }
-.upper_box .path_container .path .white_path .white_square {
-  position: absolute;
-  top: 0;
-  opacity: 0;
-  width: 100%;
-  height: 10px;
-  background-color: white;
-}
-.upper_box .path_container .path .white_path .white_square.show {
-  opacity: 1;
-  background-color: blue;
-  animation: squareDown 2s linear forwards;
+@media screen and (max-width: 767px) {
+  .upper_box .path_container .path .white_path {
+    width: 37.4px;
+  }
 }
 .upper_box .path_container .path .black_path {
   position: absolute;
   top: 0px;
   width: 22px;
-  height: 165px;
+  height: 100%;
   margin-left: -11px;
   margin-right: -11px;
   z-index: 20;
 }
-.upper_box .path_container .path .black_path .black_square {
+@media screen and (max-width: 767px) {
+  .upper_box .path_container .path .black_path {
+    width: 18.7px;
+  }
+}
+.upper_box .path_container .path .white_square, .upper_box .path_container .path .black_square {
   position: absolute;
   top: 0;
   opacity: 0;
   width: 100%;
   height: 10px;
-  background-color: white;
 }
-.upper_box .path_container .path .black_path .black_square.show {
+.upper_box .path_container .path .white_square.show, .upper_box .path_container .path .black_square.show {
   opacity: 1;
-  background-color: red;
   animation: squareDown 2s linear forwards;
+}
+@media screen and (max-width: 767px) {
+  .upper_box .path_container .path .white_square.show, .upper_box .path_container .path .black_square.show {
+    animation: squareDownMobile 2s linear forwards;
+  }
+}
+.upper_box .path_container .path .white_square.show {
+  background-image: linear-gradient(180deg, #03d5b2 70%, #02a388 100%);
+}
+.upper_box .path_container .path .black_square.show {
+  background-image: linear-gradient(180deg, #03d5b2 70%, #02a388 100%);
 }
 
 @keyframes squareDown {
@@ -118,7 +136,15 @@ button .fa-circle {
     transform: translateY(0%);
   }
   100% {
-    transform: translateY(120px);
+    transform: translateY(240px);
+  }
+}
+@keyframes squareDownMobile {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(115px);
   }
 }
 .center_box {
@@ -128,7 +154,6 @@ button .fa-circle {
   position: relative;
   align-items: flex-start;
   box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
-  margin: 40px;
 }
 .center_box .keyboard .piano_key {
   cursor: pointer;
@@ -136,43 +161,61 @@ button .fa-circle {
 .center_box .keyboard .piano_key .white {
   align-items: flex-end;
   width: 44px;
-  height: 300px;
+  height: 200px;
   border: solid 1px #eee;
   background-color: white;
   transition: 0.1s;
+}
+@media screen and (max-width: 767px) {
+  .center_box .keyboard .piano_key .white {
+    width: 37.4px;
+    height: 100px;
+  }
 }
 .center_box .keyboard .piano_key .white:hover {
   background-color: #eee;
 }
 .center_box .keyboard .piano_key .white.playing {
   background-color: #d5d5d5;
-  transform: translate(0px, 0px);
 }
 .center_box .keyboard .piano_key .black {
   align-items: flex-end;
   position: absolute;
   top: 0px;
   width: 22px;
-  height: 165px;
+  height: 110px;
   background-color: #585858;
   margin-left: -11px;
   margin-right: -11px;
   z-index: 20;
   transition: 0.1s;
 }
+@media screen and (max-width: 767px) {
+  .center_box .keyboard .piano_key .black {
+    width: 18.7px;
+    height: 55px;
+  }
+}
 .center_box .keyboard .piano_key .black:hover {
   background-color: #3f3f3f;
 }
 .center_box .keyboard .piano_key .black.playing {
   background-color: #727272;
-  transform: translate(0px, 0px);
 }
 .center_box .keyboard .piano_key .label {
-  color: rgba(88, 88, 88, 0.5);
-  transform: translateY(20px);
+  position: absolute;
+  top: 0px;
   font-size: 8px;
 }
+.center_box .keyboard .piano_key .white .label {
+  color: rgba(88, 88, 88, 0.4);
+  transform: translateY(20px);
+}
+.center_box .keyboard .piano_key .black .label {
+  color: rgba(238, 238, 238, 0.4);
+  transform: translateY(10px);
+}
 .center_box .controls {
-  margin: 20px;
+  margin-top: 40px;
   gap: 20px;
 }/*# sourceMappingURL=style.css.map */
