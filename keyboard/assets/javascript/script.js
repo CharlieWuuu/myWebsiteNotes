@@ -17,17 +17,146 @@ var vm = new Vue({
   data: {
     soundData: soundPack,
     notes: [
-      { num: 1, time: 0 },
-      { num: 1, time: 100 },
-      { num: 2, time: 150 },
-      { num: 3, time: 200 },
-      { num: 3, time: 300 },
-      { num: 2, time: 400 },
-      { num: 1, time: 450 },
-      { num: 2, time: 500 },
-      { num: 3, time: 550 },
-      { num: 1, time: 600 },
-      { num: 0, time: 800 },
+      {
+        num: 10,
+        time: 0,
+      },
+      {
+        num: 9.5,
+        time: 75,
+      },
+      {
+        num: 10,
+        time: 150,
+      },
+      {
+        num: 9.5,
+        time: 225,
+      },
+      {
+        num: 10,
+        time: 300,
+      },
+      {
+        num: 7,
+        time: 375,
+      },
+      {
+        num: 9,
+        time: 450,
+      },
+      {
+        num: 8,
+        time: 525,
+      },
+      {
+        num: 6,
+        time: 600,
+      },
+      {
+        num: 1,
+        time: 825,
+      },
+      {
+        num: 3,
+        time: 900,
+      },
+      {
+        num: 6,
+        time: 975,
+      },
+      {
+        num: 7,
+        time: 1050,
+      },
+      {
+        num: 3,
+        time: 1275,
+      },
+      {
+        num: 5.5,
+        time: 1350,
+      },
+      {
+        num: 7,
+        time: 1425,
+      },
+      {
+        num: 8,
+        time: 1500,
+      },
+      {
+        num: 3,
+        time: 1725,
+      },
+      {
+        num: 10,
+        time: 1800,
+      },
+      {
+        num: 9.5,
+        time: 1875,
+      },
+      {
+        num: 10,
+        time: 1950,
+      },
+      {
+        num: 9.5,
+        time: 2025,
+      },
+      {
+        num: 10,
+        time: 2100,
+      },
+      {
+        num: 7,
+        time: 2175,
+      },
+      {
+        num: 9,
+        time: 2250,
+      },
+      {
+        num: 8,
+        time: 2325,
+      },
+      {
+        num: 6,
+        time: 2400,
+      },
+      {
+        num: 1,
+        time: 2625,
+      },
+      {
+        num: 3,
+        time: 2700,
+      },
+      {
+        num: 6,
+        time: 2775,
+      },
+      {
+        num: 7,
+        time: 2850,
+      },
+      {
+        num: 3,
+        time: 3075,
+      },
+      {
+        num: 8,
+        time: 3150,
+      },
+      {
+        num: 7,
+        time: 3225,
+      },
+      {
+        num: 6,
+        time: 3300,
+      },
     ],
     challenger: [],
     recorder_notes: [],
@@ -88,34 +217,59 @@ var vm = new Vue({
       },
       {
         urlId: 1,
-        description: '命運交響曲',
-        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/Fate.json',
+        description: '小星星',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/star.json',
       },
       {
         urlId: 2,
+        description: '歡樂頌',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/Ode_to_Joy.json',
+      },
+      {
+        urlId: 3,
         description: '小步舞曲',
         url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/minuet.json',
       },
       {
-        urlId: 3,
+        urlId: 4,
+        description: '給愛麗絲',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/elise.json',
+      },
+      {
+        urlId: 5,
+        description: '雨夜花',
+        url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/rain.json',
+      },
+      {
+        urlId: 6,
         description: '龍貓',
         url: 'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/javascript/dodoro.json',
       },
       {
-        urlId: 4,
+        urlId: 7,
         description: '我的錄音',
         url: '',
       },
     ],
   },
   methods: {
+    clickNote: function (id) {
+      if (this.is_recording == 1) {
+        this.recorder_notes.push({ num: id, time: this.record_time });
+      }
+      if (this.is_challenging == 1) {
+        this.showScore(id);
+      }
+      this.playNote(id, 1);
+    },
+
     load_sample: function (e) {
       urlId = e.target.value;
       console.log(urlId);
       this.now_music = this.url_database[urlId].description;
       this.url_database[urlId].url;
       var vobj = this;
-      if (urlId >= 4) {
+      if (urlId == 7) {
         vobj.notes = this.recorder_notes;
       } else {
         $.ajax({
@@ -127,17 +281,16 @@ var vm = new Vue({
         });
       }
     },
-    playNote: function (id, volume) {
+    playNote: function (id) {
       if (id > 0) {
         var audio_obj = $('audio[data-num="' + id + '"]')[0];
-        audio_obj.volume = volume;
         audio_obj.currentTime = 0;
         audio_obj.play();
       }
     },
-    playNext: function (volume) {
+    playNext: function (playing_time) {
       var play_note = this.notes[this.now_note_id].num;
-      this.playNote(play_note, volume);
+      this.playNote(play_note);
       this.now_note_id += 1;
       if (this.now_note_id >= this.notes.length) {
         this.stopPlay();
@@ -151,42 +304,12 @@ var vm = new Vue({
         }));
     },
 
-    clickNote: function (id) {
-      if (this.is_recording == 1) {
-        this.recorder_notes.push({ num: id, time: this.record_time });
-      }
-      if (this.is_challenging == 1) {
-        this.showScore(id);
-      }
-      this.playNote(id, 1);
-    },
-
     stopRecord: function () {
       this.recorder_notes.push({ num: 0, time: this.record_time + 400 });
       clearInterval(this.recorder);
       this.record_time = 0;
       this.is_recording = 0;
       this.notes = this.recorder_notes;
-    },
-
-    playRecord: function () {
-      this.is_playing = 1;
-      this.now_note_id = 0;
-      this.playing_time = -400;
-      this.next_note_id = 0;
-      var vobj = this;
-      this.player = setInterval(function () {
-        vobj.playing_time++;
-        if (vobj.playing_time >= vobj.recorder_notes[vobj.next_note_id].time) {
-          var play_note = vobj.recorder_notes[vobj.now_note_id].num;
-          vobj.playNote(play_note, 1);
-          vobj.now_note_id += 1;
-          if (vobj.now_note_id >= vobj.recorder_notes.length) {
-            vobj.stopPlay();
-          }
-          vobj.next_note_id++;
-        }
-      }, 1);
     },
 
     startPlay: function () {
@@ -199,7 +322,7 @@ var vm = new Vue({
       this.player = setInterval(function () {
         vobj.playing_time++;
         if (vobj.playing_time >= vobj.notes[vobj.next_note_id].time) {
-          vobj.playNext(1);
+          vobj.playNext(vobj.playing_time);
           vobj.next_note_id++;
         }
       }, 1);
@@ -227,15 +350,6 @@ var vm = new Vue({
         this.is_challenging == 0
       )
         return true;
-      // if (
-      //   this.playing_time > 0 &&
-      //   this.is_playing == 1 &&
-      //   this.recorder_notes.length > 0 &&
-      //   this.recorder_notes[cur_id].num == id
-      // ) {
-      //   this.notes = this.recorder_notes;
-      //   return true;
-      // }
       return false;
     },
 
@@ -269,14 +383,11 @@ var vm = new Vue({
           Math.abs(this.playing_time - timeStandard) < 100
         ) {
           this.score += 100;
-          // this.situation = '+';
         }
         if (numStandard !== id) {
           this.score -= 20;
-          // this.situation = '-';
         }
       }
-      // this.playNote(this.display_keys[i].num, 1);
     },
 
     showResult: function () {
@@ -292,10 +403,8 @@ var vm = new Vue({
     },
 
     showNote: function (time) {
-      if (this.playing_time !== -400) {
-        if (this.playing_time + 400 > time) {
-          return true;
-        }
+      if (this.is_playing == 1 && this.playing_time + 400 > time) {
+        return true;
       }
     },
   },

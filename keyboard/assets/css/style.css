@@ -112,7 +112,7 @@ html, body {
   position: absolute;
   top: 0;
   opacity: 0;
-  width: 100%;
+  width: 98%;
   height: 10px;
 }
 .upper_box .path_container .path .white_square.show, .upper_box .path_container .path .black_square.show {
@@ -173,7 +173,7 @@ html, body {
   }
 }
 .center_box .keyboard .piano_key .white:hover {
-  background-color: #eee;
+  background-color: #d5d5d5;
 }
 .center_box .keyboard .piano_key .white.playing {
   background-color: #d5d5d5;
@@ -218,4 +218,13 @@ html, body {
 .center_box .controls {
   margin-top: 40px;
   gap: 20px;
+}
+
+@keyframes showNote {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }/*# sourceMappingURL=style.css.map */

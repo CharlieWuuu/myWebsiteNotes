@@ -50,6 +50,7 @@
           <div class="piano_key" v-for="s in display_keys">
             <div
               class="white"
+              id="s.num"
               v-if="s.type == 'white'"
               v-on:click="clickNote(s.num)"
               :class="getCurrentHighlight(s.num, s.key) ? 'playing': ''"
@@ -66,18 +67,6 @@
             </div>
           </div>
         </div>
-        <!-- <ul class="notes_list" v-if="notes.length>0">
-          <li
-            v-for="(note, index) in notes"
-            :class="now_note_id-1==index?'playing':''"
-          >
-            <div class="num">{{note.num}}</div>
-            <div class="time">
-              第{{Math.ceil(note.time / 400)}}小節 第{{Math.ceil((note.time /
-              400 - (Math.ceil(note.time / 400) - 1))*4)}}拍
-            </div>
-          </li>
-        </ul> -->
         <div class="controls">
           <select
             :class="is_playing == 1 || is_challenging == 1 || is_recording == 1 ? 'opacity' : ''"
@@ -118,6 +107,7 @@
             v-on:click="stopRecord"
           >
             停止錄音
+            <i class="fa-solid fa-square"></i>
           </button>
           <button
             v-if="now_music == '我的錄音' && is_recording== 0 && recorder_notes.length > 1 && is_playing == 0"
@@ -131,7 +121,7 @@
             v-on:click="stopPlay"
           >
             停放錄音
-            <i class="fa fa-play"></i>
+            <i class="fa-solid fa-square"></i>
           </button>
           <button
             v-if="now_music == '我的錄音' && recorder_notes.length > 1 && is_recording == 0"
@@ -154,14 +144,11 @@
           </button>
 
           <h4>
-            <!-- <span>播放時間：{{playing_time}}</span> -->
             <span
               v-if="now_music !== '我的錄音' || (now_music == '我的錄音' && is_recording == 0 && recorder_notes.length > 1)"
               >分數：{{score}} / {{(notes.length - 1) * 100}}
             </span>
             <span>，{{result}}</span>
-            <!-- <span>錄音時間：{{record_time}}</span> -->
-            <!-- <span>現在曲目：{{now_music}}</span> -->
           </h4>
         </div>
       </div>
@@ -169,7 +156,3 @@
     <script src="./assets/javascript/script.js"></script>
   </body>
 </html>
-
-<!-- 可用音源清單：
-https://github.com/sgossner/VCSL/tree/master/Idiophones/Struck%20Idiophones/Marimba
--->
