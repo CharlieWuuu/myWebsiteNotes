@@ -4,13 +4,20 @@ var sound_index = [
   12, 12.5, 13, 13.5, 14, 15,
 ];
 
+// for (var i = 0; i < sound_index.length; i++) {
+//   soundPack.push({
+//     number: sound_index[i],
+//     url:
+//       'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/music/' +
+//       sound_index[i] +
+//       '.wav',
+//   });
+// }
+
 for (var i = 0; i < sound_index.length; i++) {
   soundPack.push({
     number: sound_index[i],
-    url:
-      'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/music/' +
-      sound_index[i] +
-      '.wav',
+    url: './assets/music/' + sound_index[i] + '.wav',
   });
 }
 
