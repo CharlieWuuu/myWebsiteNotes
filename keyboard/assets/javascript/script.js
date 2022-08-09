@@ -8,7 +8,9 @@ for (var i = 0; i < sound_index.length; i++) {
   soundPack.push({
     number: sound_index[i],
     url:
-      'https://awiclass.monoame.com/pianosound/set/' + sound_index[i] + '.wav',
+      'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/music/' +
+      sound_index[i] +
+      '.wav',
   });
 }
 
