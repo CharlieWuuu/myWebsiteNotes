@@ -17,7 +17,7 @@
   <body>
     <div id="app">
       <div class="audioplayer" v-for="s in soundData">
-        <audio :data-num="s.number" preload="auto">
+        <audio controls :data-num="s.number" preload="auto">
           <source :src="s.url" type="audio/wav" />
         </audio>
       </div>

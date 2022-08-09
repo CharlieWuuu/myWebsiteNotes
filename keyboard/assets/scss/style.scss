@@ -49,37 +49,37 @@ button, select{
 	}
 }
 
-.notes_list{
-	@extend %flex-center;
-	justify-content: flex-start;
-	flex-wrap: wrap;
-	width: 720px;
-	padding: 0;
-	li{
-		display: inline-block;
-		border-left: solid 1px;
-		border-right: solid 1px;
-		min-width: 79px;
-		padding: 2px 5px;
-		margin: 4px 0 4px -1px;
-		cursor: pointer;
-		transition: .3s;
-		&:hover{
-			background-color: darken($color_white, 5);
-		}
+// .notes_list{
+// 	@extend %flex-center;
+// 	justify-content: flex-start;
+// 	flex-wrap: wrap;
+// 	width: 720px;
+// 	padding: 0;
+// 	li{
+// 		display: inline-block;
+// 		border-left: solid 1px;
+// 		border-right: solid 1px;
+// 		min-width: 79px;
+// 		padding: 2px 5px;
+// 		margin: 4px 0 4px -1px;
+// 		cursor: pointer;
+// 		transition: .3s;
+// 		&:hover{
+// 			background-color: darken($color_white, 5);
+// 		}
 
-		&.playing{
-			background-color: darken($color_white, 10);
-		}
-		.time{
-			font-size: 8px;
-			opacity: 0.3;
-		}
-		.num{
-			font-size: 16px;
-		}
-	}
-}
+// 		&.playing{
+// 			background-color: darken($color_white, 10);
+// 		}
+// 		.time{
+// 			font-size: 8px;
+// 			opacity: 0.3;
+// 		}
+// 		.num{
+// 			font-size: 16px;
+// 		}
+// 	}
+// }
 
 html, body{
 	height: 100vh;
