@@ -50,7 +50,6 @@ html, body {
 }
 .controls button:hover, .controls select:hover {
   background-color: #585858;
-  color: white;
 }
 .controls button .fa-circle, .controls select .fa-circle {
   color: darkred;
@@ -64,13 +63,17 @@ html, body {
 }
 .controls button.opacity:hover, .controls select.opacity:hover {
   background-color: initial;
-  color: initial;
+  color: #eee;
 }
 .controls #startChallenge {
   background-color: #02a388;
 }
 .controls #startChallenge:hover {
   background-color: #028a73;
+}
+.controls #startChallenge.opacity:hover {
+  background-color: #02a388;
+  color: #eee;
 }
 
 .upper_box .path_container .path {

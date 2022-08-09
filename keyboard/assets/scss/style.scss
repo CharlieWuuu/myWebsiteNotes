@@ -60,7 +60,6 @@ html, body{
 		cursor: pointer;
 		&:hover{
 			background-color: $color_black;
-			color: white;
 		}
 		.fa-circle{
 			color: darkred;
@@ -73,7 +72,7 @@ html, body{
 			opacity: 0.5;
 			&:hover{
 				background-color: initial;
-				color: initial;
+				color: $color_white;
 			}
 		}
 	}
@@ -81,8 +80,14 @@ html, body{
 		background-color: $color_green;
 		&:hover{
 			background-color: darken($color_green, 5);
+		}
+		&.opacity:hover{
+				background-color: $color_green;
+				color: $color_white;
+			}
+		}
 	}
-}}
+
 
 .upper_box{
 	@extend %flex-center;
