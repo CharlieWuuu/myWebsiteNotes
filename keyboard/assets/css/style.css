@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.center_box .controls, .center_box .keyboard .piano_key .black, .center_box .keyboard .piano_key .white, .center_box .keyboard, .center_box, .upper_box .path_container, .upper_box, html, body, .notes_list {
+.center_box .keyboard .piano_key .black, .center_box .keyboard .piano_key .white, .center_box .keyboard, .center_box, .upper_box .path_container, .upper_box, .controls, html, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,65 +13,64 @@ h2 {
   margin-bottom: 30px;
 }
 
-button, select {
+html, body {
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  background-color: #989898;
+}
+
+#app {
+  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
+}
+
+.controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  background-color: #656565;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  gap: 20px;
+}
+.controls span {
+  color: #eee;
+}
+.controls button, .controls select {
   background-color: transparent;
-  border: none;
-  border: solid 1px;
+  border: solid 1px #eee;
+  color: #eee;
   padding: 4px 12px;
   border-radius: 4px;
   transition: 0.5s;
   cursor: pointer;
 }
-button:hover, select:hover {
+.controls button:hover, .controls select:hover {
   background-color: #585858;
   color: white;
 }
-button .fa-circle, select .fa-circle {
+.controls button .fa-circle, .controls select .fa-circle {
   color: darkred;
 }
-button.opacity, select.opacity {
+.controls button option, .controls select option {
+  background-color: #585858;
+}
+.controls button.opacity, .controls select.opacity {
   cursor: default;
   opacity: 0.5;
 }
-button.opacity:hover, select.opacity:hover {
+.controls button.opacity:hover, .controls select.opacity:hover {
   background-color: initial;
   color: initial;
 }
-
-.notes_list {
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  width: 720px;
-  padding: 0;
+.controls #startChallenge {
+  background-color: #02a388;
 }
-.notes_list li {
-  display: inline-block;
-  border-left: solid 1px;
-  border-right: solid 1px;
-  min-width: 79px;
-  padding: 2px 5px;
-  margin: 4px 0 4px -1px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.notes_list li:hover {
-  background-color: #e1e1e1;
-}
-.notes_list li.playing {
-  background-color: #d5d5d5;
-}
-.notes_list li .time {
-  font-size: 8px;
-  opacity: 0.3;
-}
-.notes_list li .num {
-  font-size: 16px;
-}
-
-html, body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+.controls #startChallenge:hover {
+  background-color: #028a73;
 }
 
 .upper_box .path_container .path {
@@ -136,7 +135,7 @@ html, body {
     transform: translateY(0%);
   }
   100% {
-    transform: translateY(240px);
+    transform: translateY(230px);
   }
 }
 @keyframes squareDownMobile {
@@ -153,7 +152,6 @@ html, body {
 .center_box .keyboard {
   position: relative;
   align-items: flex-start;
-  box-shadow: 0px 0px 40px -5px rgba(0, 0, 0, 0.4);
 }
 .center_box .keyboard .piano_key {
   cursor: pointer;
@@ -214,10 +212,6 @@ html, body {
 .center_box .keyboard .piano_key .black .label {
   color: rgba(238, 238, 238, 0.4);
   transform: translateY(10px);
-}
-.center_box .controls {
-  margin-top: 40px;
-  gap: 20px;
 }
 
 @keyframes showNote {

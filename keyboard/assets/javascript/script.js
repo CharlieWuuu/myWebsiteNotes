@@ -4,22 +4,22 @@ var sound_index = [
   12, 12.5, 13, 13.5, 14, 15,
 ];
 
-// for (var i = 0; i < sound_index.length; i++) {
-//   soundPack.push({
-//     number: sound_index[i],
-//     url:
-//       'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/music/' +
-//       sound_index[i] +
-//       '.wav',
-//   });
-// }
-
 for (var i = 0; i < sound_index.length; i++) {
   soundPack.push({
     number: sound_index[i],
-    url: './assets/music/' + sound_index[i] + '.wav',
+    url:
+      'https://charliewuuu.github.io/myWebsiteNotes/keyboard/assets/music/' +
+      sound_index[i] +
+      '.wav',
   });
 }
+
+// for (var i = 0; i < sound_index.length; i++) {
+//   soundPack.push({
+//     number: sound_index[i],
+//     url: './assets/music/' + sound_index[i] + '.wav',
+//   });
+// }
 
 var vm = new Vue({
   el: '#app',
@@ -57,6 +57,10 @@ var vm = new Vue({
       {
         num: 8,
         time: 700,
+      },
+      {
+        num: 0,
+        time: 1100,
       },
     ],
     challenger: [],
@@ -166,7 +170,6 @@ var vm = new Vue({
 
     load_sample: function (e) {
       urlId = e.target.value;
-      console.log(urlId);
       this.now_music = this.url_database[urlId].description;
       this.url_database[urlId].url;
       var vobj = this;
@@ -176,11 +179,12 @@ var vm = new Vue({
         $.ajax({
           url: this.url_database[urlId].url,
           success: function (res) {
-            console.log(res);
             vobj.notes = res;
           },
         });
       }
+      this.score = 0;
+      this.result = '快來挑戰!';
     },
     playNote: function (id) {
       if (id > 0) {
@@ -219,7 +223,6 @@ var vm = new Vue({
       this.now_note_id = 0;
       this.playing_time = -400;
       this.next_note_id = 0;
-      console.log(this.notes);
       var vobj = this;
       this.player = setInterval(function () {
         vobj.playing_time++;
@@ -236,6 +239,7 @@ var vm = new Vue({
       this.playing_time = -400;
       this.next_note_id = 0;
       this.is_playing = 0;
+      if (this.is_challenging == 1) this.showResult();
       this.is_challenging = 0;
     },
 
@@ -294,13 +298,13 @@ var vm = new Vue({
 
     showResult: function () {
       var fullScore = this.notes.length * 100;
-      if (this.score >= fullScore * 0.8) this.result = '達人！';
+      if (this.score >= fullScore * 0.8) this.result = '你是鋼琴達人！';
       if (fullScore * 0.8 > this.score && this.score >= fullScore * 0.5)
-        this.result = '很棒！';
+        this.result = '太厲害了！';
       if (fullScore * 0.5 > this.score && this.score >= fullScore * 0.2)
-        this.result = '多努力！';
+        this.result = '很有潛力！';
       if (fullScore * 0.2 > this.score && this.score >= 0)
-        this.result = '再試一次！';
+        this.result = '再練習看看！';
       if (0 > this.score) this.result = '不可以亂按唷！';
     },
 
