@@ -161,7 +161,7 @@ var vm = new Vue({
       if (this.is_challenging == 1) {
         this.showScore(id);
       }
-      this.playNote(id, 1);
+      this.playNote(id);
     },
 
     load_sample: function (e) {
@@ -185,6 +185,7 @@ var vm = new Vue({
     playNote: function (id) {
       if (id > 0) {
         var audio_obj = $('audio[data-num="' + id + '"]')[0];
+        audio_obj.volume = 1;
         audio_obj.currentTime = 0;
         audio_obj.play();
       }
